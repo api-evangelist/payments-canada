@@ -1,0 +1,33 @@
+generated: '2026-07-23'
+method: searched
+source: live probe of api.payments.ca, developer.payments.ca, www.payments.ca
+note: >-
+  No /.well-known/ discovery documents are published on any Payments Canada host.
+  The API gateway (api.payments.ca, Apigee) returns a proxy fault for unknown
+  paths; the developer portal and marketing site return 404/403. OAuth2 token
+  issuance is at https://api.payments.ca/accesstoken (not an RFC 8414 metadata
+  document). Absence recorded as valid negative data.
+hosts:
+- host: https://api.payments.ca
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://developer.payments.ca
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://www.payments.ca
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}

@@ -1,0 +1,60 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  openapi/ 4xx/5xx responses (RTR sandbox pacs/admi/camt APIs and FIF/CCIN
+  extract APIs)
+format: vendor-json
+envelope:
+  media_type: application/vnd.api.v1+json
+  schema: ErrorModel
+  note: >-
+    Payments Canada does not use RFC 9457 application/problem+json. HTTP-level
+    errors return an ErrorModel body under the vendor media type. On the RTR
+    ISO 20022 rails, business/validation failures are additionally surfaced
+    inside the message layer as pacs.002 (status RJCT) or admi.002 (Message
+    Reject), not as HTTP errors.
+
+iso20022_reject_semantics:
+  - message: pacs.002
+    name: FI To FI Payment Status Report
+    condition: Business or validation error — transaction status = RJCT (else non-RJCT success)
+    source_operation: openapi/rtr-inbound-participant-payment-api-openapi.yml#POST /payments
+  - message: admi.002
+    name: Message Reject
+    condition: Syntax error in the API request payload; carries RejectionReason
+    source_operations:
+    - openapi/rtr-inbound-participant-payment-api-openapi.yml#POST /payments
+    - openapi/rtr-inbound-csp-heartbeat-api-openapi.yml#POST /inbound-heartbeat
+    - openapi/rtr-interest-report-api-openapi.yml#POST /interest-report
+    - openapi/rtr-balance-report-api-openapi.yml#POST /payment-capacity-balance-report
+
+problems:
+- status: 400
+  title: Bad Request - Validation Errors
+  schema: ErrorModel
+  applies_to: [RTR rails, FIF extracts, FIF branch]
+- status: 401
+  title: Unauthorized
+  applies_to: [RTR rails, FIF extracts, FIF branch]
+- status: 403
+  title: Forbidden
+  schema: ErrorModel
+  applies_to: [RTR payments, RTR heartbeat]
+- status: 404
+  title: Resource Not Found
+  applies_to: [RTR payments, RTR heartbeat, FIF extracts, FIF branch]
+- status: 406
+  title: Not Acceptable
+  applies_to: [FIF extracts, FIF branch]
+- status: 429
+  title: Too Many Requests
+  detail: Blocked due to rate limiting.
+  applies_to: [RTR rails, FIF extracts]
+- status: 500
+  title: Internal Server Error
+  schema: ErrorModel
+  applies_to: [RTR rails, FIF extracts, FIF branch]
+- status: 503
+  title: Service Unavailable
+  detail: The server cannot handle the request due to temporary maintenance.
+  applies_to: [RTR payments, RTR heartbeat]

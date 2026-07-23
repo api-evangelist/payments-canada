@@ -1,0 +1,43 @@
+generated: '2026-07-23'
+method: derived
+source: openapi/rtr-balance-report-api-openapi.yml, openapi/rtr-inbound-csp-heartbeat-api-openapi.yml,
+  openapi/rtr-inbound-participant-payment-api-openapi.yml, openapi/rtr-interest-report-api-openapi.yml
+schemes:
+- name: oAuth
+  source: openapi/rtr-balance-report-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.payments.ca/accesstoken
+  description: This API uses OAuth 2 with the implicit grant flow. (The access token expires
+    in 5 minutes)
+- name: oAuth
+  source: openapi/rtr-inbound-csp-heartbeat-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.payments.ca/accesstoken
+  description: This API uses OAuth 2 with the implicit grant flow. (The access token expires
+    in 5 minutes)
+- name: oAuth
+  source: openapi/rtr-inbound-participant-payment-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.payments.ca/accesstoken
+  description: This API uses OAuth 2 with the implicit grant flow. (The access token expires
+    in 5 minutes)
+- name: oAuth
+  source: openapi/rtr-interest-report-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.payments.ca/accesstoken
+  description: This API uses OAuth 2 with the implicit grant flow. (The access token expires
+    in 5 minutes)
+scopes:
+- scope: client_credentials
+  description: Required to get credentials for the API call
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/rtr-balance-report-api-openapi.yml
+  - openapi/rtr-inbound-csp-heartbeat-api-openapi.yml
+  - openapi/rtr-inbound-participant-payment-api-openapi.yml
+  - openapi/rtr-interest-report-api-openapi.yml

@@ -1,0 +1,26 @@
+generated: '2026-07-23'
+method: searched
+source: https://developer.payments.ca/payments-canada-api-standards
+versioning:
+  scheme: media-type
+  detail: >-
+    Accept-header (media-type) versioning per the Payments Canada API Standards,
+    e.g. `Accept: application/payments.myapi.v2+json`. URIs are preserved across
+    versions. Current published specs are at version v1
+    (application/vnd.api.v1+json); OpenAPI info.version is 1.1.0 for RTR specs.
+  current: v1
+  docs: https://developer.payments.ca/payments-canada-api-standards
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+sla:
+  url: null
+  note: >-
+    Production access is license/agreement gated; any SLA is governed by the
+    member/participant agreement, not published on the developer portal.
+status_page: null
+status_page_note: No public status page found in portal navigation or footer.
+changelog: null
+changelog_note: No public dated changelog found; new APIs are announced via portal notifications and payments.ca news.
+deprecated_operations: []

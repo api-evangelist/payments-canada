@@ -1,0 +1,48 @@
+generated: '2026-07-23'
+method: derived
+status: candidate
+source: derived from openapi/ operations (no official Payments Canada MCP server found)
+note: >-
+  Payments Canada publishes no hosted/remote MCP server. This is a candidate tool
+  list derived one-tool-per-operation from the 8 harvested OpenAPI specs, so an
+  agent has a machine-readable surface. RTR rail tools carry ISO 20022 message
+  payloads and require OAuth2 client-credentials + JWS signing; FIF tools use a
+  Bearer token. Not a live endpoint.
+server:
+  name: payments-canada
+  transport: http
+  url: null
+tools:
+- name: send_rtr_payment
+  description: Send a single RTR credit transfer (ISO 20022 pacs.008) to RTR Exchange.
+  source_operation: openapi/rtr-inbound-participant-payment-api-openapi.yml#POST /payments
+- name: enquire_rtr_payment_status
+  description: Send a payment status report enquiry (ISO 20022 pacs.028).
+  source_operation: openapi/rtr-inbound-participant-payment-api-openapi.yml#POST /payments/status
+- name: send_rtr_heartbeat
+  description: Send/receive an application-level heartbeat (ISO 20022 admi.004 -> admi.011).
+  source_operation: openapi/rtr-inbound-csp-heartbeat-api-openapi.yml#POST /inbound-heartbeat
+- name: get_rtr_interest_report
+  description: Retrieve an interest report from the C&S system (ISO 20022 camt.003 -> camt.004).
+  source_operation: openapi/rtr-interest-report-api-openapi.yml#POST /interest-report
+- name: get_rtr_balance_report
+  description: Retrieve a payment-capacity balance report (ISO 20022 camt.003 -> camt.004).
+  source_operation: openapi/rtr-balance-report-api-openapi.yml#POST /payment-capacity-balance-report
+- name: get_ccin_master_extract
+  description: Get the CCIN master extract (paginated).
+  source_operation: openapi/ccin-extracts-api-openapi.yml#getMasterExtractUsingGET
+- name: get_ccin_updated_extract
+  description: Get the CCIN updated extract for a date window (paginated).
+  source_operation: openapi/ccin-extracts-api-openapi.yml#getUpdateExtractUsingGET
+- name: lookup_ccin
+  description: Look up a single Corporate Creditor Identification Number.
+  source_operation: openapi/ccin-lookup-api-openapi.yml#getCcinByIdUsingGET
+- name: get_fif_branch
+  description: Get a financial-institution branch record by DPRN.
+  source_operation: openapi/fif-branch-api-openapi.yml#getBranchById
+- name: get_fif_master_extract
+  description: Get the FIF master extract.
+  source_operation: openapi/fif-extracts-api-openapi.yml#getMaster
+- name: get_fif_updated_extract
+  description: Get the FIF updated extract for a date window.
+  source_operation: openapi/fif-extracts-api-openapi.yml#getUpdate

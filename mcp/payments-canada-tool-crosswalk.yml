@@ -1,0 +1,86 @@
+generated: '2026-07-23'
+method: derived
+source: mcp/payments-canada-mcp.yml (candidate tools) bound to openapi/ operations
+note: >-
+  Every candidate MCP tool binds 1:1 to a real OpenAPI operation, so each tool
+  inherits that operation's parameters + requestBody as its real inputSchema.
+  RTR rail operations have no operationId in the source specs, so they are bound
+  by method + path (verified present); FIF/CCIN operations bind by operationId.
+surfaces:
+  openapi:
+    files: 8
+    gated: false
+  graphql:
+    endpoint: null
+  mcp:
+    url: null
+    gated: candidate-only (no live server)
+crosswalk:
+- tool: send_rtr_payment
+  category: rtr-payments
+  rest: ['POST /payments']
+  binding: rest
+  confidence: high
+  note: pacs.008; input = SendPayment body + traceability-id/x-jws-signature headers
+- tool: enquire_rtr_payment_status
+  category: rtr-payments
+  rest: ['POST /payments/status']
+  binding: rest
+  confidence: high
+  note: pacs.028
+- tool: send_rtr_heartbeat
+  category: rtr-monitoring
+  rest: ['POST /inbound-heartbeat']
+  binding: rest
+  confidence: high
+  note: admi.004 -> admi.011
+- tool: get_rtr_interest_report
+  category: rtr-clearing-settlement
+  rest: ['POST /interest-report']
+  binding: rest
+  confidence: high
+  note: camt.003 -> camt.004
+- tool: get_rtr_balance_report
+  category: rtr-clearing-settlement
+  rest: ['POST /payment-capacity-balance-report']
+  binding: rest
+  confidence: high
+  note: camt.003 -> camt.004
+- tool: get_ccin_master_extract
+  category: reference-data
+  rest: [getMasterExtractUsingGET]
+  binding: rest
+  confidence: high
+- tool: get_ccin_updated_extract
+  category: reference-data
+  rest: [getUpdateExtractUsingGET]
+  binding: rest
+  confidence: high
+- tool: lookup_ccin
+  category: reference-data
+  rest: [getCcinByIdUsingGET]
+  binding: rest
+  confidence: high
+- tool: get_fif_branch
+  category: reference-data
+  rest: [getBranchById]
+  binding: rest
+  confidence: high
+- tool: get_fif_master_extract
+  category: reference-data
+  rest: [getMaster]
+  binding: rest
+  confidence: high
+- tool: get_fif_updated_extract
+  category: reference-data
+  rest: [getUpdate]
+  binding: rest
+  confidence: high
+mcp_only: []
+rest_only: []
+coverage:
+  tools_named: 11
+  tools_bound: 11
+  mcp_only: 0
+  rest_ops_total: 11
+  rest_ops_with_tool: 11

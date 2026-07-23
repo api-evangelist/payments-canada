@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Inbound Exchange Heartbeat API
+  version: 1.0.0
+extends: openapi/rtr-inbound-csp-heartbeat-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating-family: payments-infrastructure
+    x-apievangelist-domain: iso-20022
+    x-apievangelist-provider: payments-canada
+    x-apievangelist-notes: >-
+      Payments Canada developer-portal API. Auth documented in
+      authentication/payments-canada-authentication.yml; cross-cutting semantics
+      in conventions/payments-canada-conventions.yml; errors in
+      errors/payments-canada-problem-types.yml.

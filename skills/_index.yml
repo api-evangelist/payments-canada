@@ -1,0 +1,16 @@
+generated: '2026-07-23'
+method: generated
+source: grounded in openapi/ operations + conventions/ + errors/
+skills:
+- file: payments-canada-send-rtr-payment.md
+  name: Send an RTR credit transfer and check its status
+  api: openapi/rtr-inbound-participant-payment-api-openapi.yml
+  operations: ['POST /payments', 'POST /payments/status']
+- file: payments-canada-rtr-account-reports.md
+  name: Retrieve RTR interest and balance reports
+  api: openapi/rtr-balance-report-api-openapi.yml
+  operations: ['POST /payment-capacity-balance-report', 'POST /interest-report']
+- file: payments-canada-lookup-reference-data.md
+  name: Look up Canadian financial-institution and creditor reference data
+  api: openapi/fif-extracts-api-openapi.yml
+  operations: [getMaster, getUpdate, getBranchById, getMasterExtractUsingGET, getUpdateExtractUsingGET, getCcinByIdUsingGET]

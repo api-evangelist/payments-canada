@@ -1,0 +1,42 @@
+# Payments Canada
+
+> Payments Canada is the public-purpose organization, created by the Canadian Payments Act, that owns and operates Canada's core national clearing and settlement infrastructure — Lynx (high-value ISO 20022 RTGS), the Automated Clearing Settlement System (ACSS retail rail), and the Real-Time Rail (RTR). It runs a public developer portal (developer.payments.ca) exposing member/registered-user sandbox and reference-data APIs, secured with OAuth2 client-credentials (via Apigee) and, for the reference-data APIs, a Bearer token. Production access to the live rails is license/agreement gated.
+
+## APIs
+
+- [RTR Sandbox - Inbound Participant Payment API](https://developer.payments.ca/rtr-sandbox-api/apis): Send an RTR credit transfer (ISO 20022 pacs.008) and enquire on status (pacs.028 -> pacs.002 / admi.002).
+- [RTR Sandbox - Inbound Exchange Heartbeat API](https://developer.payments.ca/rtr-sandbox-api/apis): Application-level heartbeat (ISO 20022 admi.004 -> admi.011).
+- [RTR Sandbox - Interest Report API](https://developer.payments.ca/rtr-sandbox-api/apis): Retrieve an interest report from the C&S system (ISO 20022 camt.003 -> camt.004).
+- [RTR Sandbox - Payment Capacity Balance Report API](https://developer.payments.ca/rtr-sandbox-api/apis): Retrieve a payment-capacity balance report (ISO 20022 camt.003 -> camt.004).
+- [FIF Extracts API](https://developer.payments.ca/fif-extracts-api/apis): Master and weekly-updated Financial Institutions File extracts (paginated).
+- [FIF Branch API](https://developer.payments.ca/fif-branch-api/apis): Branch master record lookup by DPRN.
+- [CCIN Extracts API](https://developer.payments.ca/ccin-extracts-api/apis): Master and updated Corporate Creditor Identification Number extracts (paginated).
+- [CCIN Lookup API](https://developer.payments.ca/ccin-lookup-api/apis): Single CCIN lookup.
+- [Lynx Sandbox API](https://developer.payments.ca/lynx-sandbox-api/apis): High-value ISO 20022 RTGS sandbox (member-gated; no public OpenAPI).
+- [ACSS API](https://developer.payments.ca/acss-api/apis): Retail batch/ACH clearing rail (member-gated).
+
+## Specs
+
+- [Inbound Participant Payment OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/rtr-inbound-participant-payment-api-openapi.yml)
+- [Inbound Exchange Heartbeat OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/rtr-inbound-csp-heartbeat-api-openapi.yml)
+- [Interest Report OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/rtr-interest-report-api-openapi.yml)
+- [Payment Capacity Balance Report OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/rtr-balance-report-api-openapi.yml)
+- [FIF Extracts OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/fif-extracts-api-openapi.yml)
+- [FIF Branch OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/fif-branch-api-openapi.yml)
+- [CCIN Extracts OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/ccin-extracts-api-openapi.yml)
+- [CCIN Lookup OpenAPI](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/openapi/ccin-lookup-api-openapi.yml)
+
+## Docs
+
+- [Developer Portal](https://developer.payments.ca/)
+- [Getting Started](https://developer.payments.ca/getting-started)
+- [API Standards](https://developer.payments.ca/payments-canada-api-standards)
+- [API Toolkit (code samples, Postman, swagger/OAS)](https://github.com/paymentscanada/api-toolkit)
+- [Contact / Support](https://developer.payments.ca/content/contact-us)
+- [Legal (Terms & Privacy)](https://developer.payments.ca/legal)
+
+## Optional
+
+- Authentication: OAuth2 client-credentials (RTR rails); Bearer Authorization token (FIF APIs). Token endpoint https://api.payments.ca/accesstoken, 5-minute TTL.
+- Messaging: ISO 20022 JSON (pacs / admi / camt); RTR payloads are JWS-signed (x-jws-signature).
+- Versioning: media-type (Accept header). Errors: vendor application/vnd.api.v1+json ErrorModel (not RFC 9457).

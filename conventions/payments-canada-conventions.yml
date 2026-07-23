@@ -1,0 +1,99 @@
+generated: '2026-07-23'
+method: searched
+source: >-
+  https://developer.payments.ca/payments-canada-api-standards, plus derivation
+  from openapi/ (RTR sandbox pacs/admi/camt APIs and FIF/CCIN extract APIs)
+summary: >-
+  Cross-cutting request/response semantics for the Payments Canada developer
+  portal APIs. Two authentication families coexist: OAuth2 client-credentials
+  (RTR sandbox rails) and a Bearer Authorization apiKey (FIF extract APIs).
+  Message-content is ISO 20022 JSON for the RTR rails; the reference-data
+  (FIF/CCIN) APIs are conventional paginated REST. Versioning is Accept-header
+  (media-type) based. No documented request idempotency key.
+
+authentication:
+  styles:
+  - name: OAuth2 client-credentials
+    applies_to: RTR sandbox APIs (payments, heartbeat, interest, balance)
+    token_url: https://api.payments.ca/accesstoken
+    credentials: Consumer Key / Consumer Secret from an app registered on the developer portal
+    token_ttl_seconds: 300
+    note: Access token expires in 5 minutes.
+  - name: Bearer apiKey
+    applies_to: FIF extract / branch APIs
+    location: header
+    parameter: Authorization
+  ref: authentication/payments-canada-authentication.yml
+
+versioning:
+  scheme: media-type
+  detail: >-
+    Payments Canada API Standards mandate media-type (Accept header) versioning,
+    e.g. `Accept: application/payments.myapi.v2+json`, preserving URIs across
+    versions. RTR sandbox specs currently negotiate `application/vnd.api.v1+json`.
+  current: v1
+  docs: https://developer.payments.ca/payments-canada-api-standards
+  ref: lifecycle/payments-canada-lifecycle.yml
+
+content_types:
+  request: application/vnd.api.v1+json
+  response: application/vnd.api.v1+json
+  message_standard: ISO 20022 JSON (RTR rails); proprietary JSON (reference data)
+  note: >-
+    Payments Canada converts XML ISO 20022 schemas to JSON Schema (and optionally
+    ProtoBuf for gRPC) per its API Standards.
+
+pagination:
+  supported: true
+  applies_to: FIF extracts, CCIN extracts (master/updated)
+  style: page-number
+  request_params: [page, limit, allRecords, sortField, sortOrder]
+  date_windowing: [startDate, endDate, asAtDate]
+  note: >-
+    Reference-data extract endpoints page via `page` + `limit` with `sortField`/
+    `sortOrder`; `allRecords=true` returns the full set. RTR rail operations are
+    single-message request/response and are not paginated.
+
+request_tracing:
+  supported: true
+  headers:
+  - name: traceability-id
+    format: uuid
+    required: true
+    scope: RTR rails
+    description: Unique id per RTR Exchange call, propagated through all downstream systems.
+  - name: x-uetr
+    format: uuid (max 36)
+    required: false
+    scope: RTR rails
+    description: ISO 20022 Unique End-to-end Transaction Reference for message tracking (pacs.008 etc.).
+
+message_signing:
+  supported: true
+  scope: RTR rails
+  request_header: x-jws-signature
+  response_header: x-jws-signature
+  format: JWS (JSON Web Signature, RFC 7515)
+  note: Request and response payloads are JWS-signed; signature is required on RTR calls.
+
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header/parameter is documented or present in the OpenAPI.
+    RTR payments carry a UETR (x-uetr) for end-to-end tracing/reconciliation, but
+    Payments Canada does not document it as an idempotency de-duplication key.
+
+error_envelope:
+  rail_reference_data:
+    media_type: application/vnd.api.v1+json
+    schema: ErrorModel
+  iso20022_rails:
+    reject_message: admi.002 (Message Reject) for syntax errors
+    status_report: pacs.002 with transaction status RJCT for business/validation errors
+  ref: errors/payments-canada-problem-types.yml
+
+rate_limiting:
+  signaled: true
+  mechanism: HTTP 429 Too Many Requests
+  headers_documented: false
+  note: RTR and FIF endpoints return 429 when rate limited; no documented quota headers.

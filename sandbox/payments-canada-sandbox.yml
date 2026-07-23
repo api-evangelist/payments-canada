@@ -1,0 +1,37 @@
+generated: '2026-07-23'
+method: searched
+source: >-
+  https://developer.payments.ca/getting-started,
+  https://developer.payments.ca/rtr-sandbox-api/apis, and openapi/ example values
+summary: >-
+  The Payments Canada developer portal is a self-service sandbox. Register on the
+  portal, create an app subscribed to the `rtr-sandbox-product`, and use the
+  generated Consumer Key / Consumer Secret to obtain an OAuth2 client-credentials
+  access token. Production access to the live rails (Lynx, RTR, ACSS) is a
+  separate, license/agreement-gated process. No live payment is settled in the
+  sandbox.
+access:
+  registration: https://developer.payments.ca/getting-started
+  product: rtr-sandbox-product
+  credentials: Consumer Key + Consumer Secret (per app on the developer portal)
+  token_url: https://api.payments.ca/accesstoken
+  token_ttl_seconds: 300
+environments:
+- mode: sandbox
+  base_url: https://api.payments.ca/rtr-sandbox
+  applies_to: RTR sandbox rails (payments, heartbeat, interest, balance)
+- mode: production
+  base_url: license/agreement-gated (not published)
+example_identifiers:
+  note: >-
+    Example values published verbatim in the OpenAPI specs for use when calling
+    the interactive Swagger console; not secrets.
+  traceability_id: e23d32eb-c7f2-4836-a314-557efe95a525
+  x_uetr: eb6305c9-1f7f-49de-aed0-16487c27b42d
+tooling:
+  postman_collection: https://github.com/paymentscanada/api-toolkit/tree/develop/postman-collection
+  code_samples: https://github.com/paymentscanada/api-toolkit/tree/develop/code-samples
+  swagger_console: https://developer.payments.ca/rtr-sandbox-api/apis
+notes:
+- No test card numbers or magic decline values — these are interbank clearing/settlement rails, not a card acquirer.
+- Interactive "Try it out" via the portal Swagger UI is authorized with the Consumer Key (username) and Consumer Secret (password).

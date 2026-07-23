@@ -52,6 +52,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rtr-inbound-participant-payment-api-openapi.yml
+  - type: Overlay
+    url: overlays/rtr-inbound-participant-payment-api-overlay.yaml
   - type: Documentation
     url: https://developer.payments.ca/rtr-sandbox-api/apis
   - type: APIReference
@@ -72,6 +74,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rtr-inbound-csp-heartbeat-api-openapi.yml
+  - type: Overlay
+    url: overlays/rtr-inbound-csp-heartbeat-api-overlay.yaml
   - type: Documentation
     url: https://developer.payments.ca/rtr-sandbox-api/apis
   - type: APIReference
@@ -92,6 +96,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rtr-interest-report-api-openapi.yml
+  - type: Overlay
+    url: overlays/rtr-interest-report-api-overlay.yaml
   - type: Documentation
     url: https://developer.payments.ca/rtr-sandbox-api/apis
   - type: APIReference
@@ -112,6 +118,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rtr-balance-report-api-openapi.yml
+  - type: Overlay
+    url: overlays/rtr-balance-report-api-overlay.yaml
   - type: Documentation
     url: https://developer.payments.ca/rtr-sandbox-api/apis
   - type: APIReference
@@ -151,12 +159,17 @@ apis:
     updated extract data for Canadian financial institutions. Registered-user
     access via the developer portal.
   humanURL: https://developer.payments.ca/fif-extracts-api/apis
+  baseURL: https://api.payments.ca/fif-extracts
   tags:
   - Financial Institutions File
   - Reference Data
   properties:
+  - type: OpenAPI
+    url: openapi/fif-extracts-api-openapi.yml
   - type: Documentation
     url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Overlay
+    url: overlays/fif-extracts-api-overlay.yaml
 - aid: payments-canada:fif-branch-api
   name: FIF Branch API
   description: >-
@@ -164,12 +177,17 @@ apis:
     data for Canadian financial institutions. Registered-user access via the
     developer portal.
   humanURL: https://developer.payments.ca/fif-branch-api/apis
+  baseURL: https://api.payments.ca/fif-branch
   tags:
   - Financial Institutions File
   - Reference Data
   properties:
+  - type: OpenAPI
+    url: openapi/fif-branch-api-openapi.yml
   - type: Documentation
     url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Overlay
+    url: overlays/fif-branch-api-overlay.yaml
 - aid: payments-canada:ccin-extracts-api
   name: CCIN Extracts API
   description: >-
@@ -177,12 +195,17 @@ apis:
     and updated extract data matching the weekly file distribution. Registered-user
     access via the developer portal.
   humanURL: https://developer.payments.ca/ccin-extracts-api/apis
+  baseURL: https://api.payments.ca
   tags:
   - CCIN
   - Reference Data
   properties:
+  - type: OpenAPI
+    url: openapi/ccin-extracts-api-openapi.yml
   - type: Documentation
     url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Overlay
+    url: overlays/ccin-extracts-api-overlay.yaml
 - aid: payments-canada:ccin-lookup-api
   name: CCIN Lookup API
   description: >-
@@ -190,13 +213,48 @@ apis:
     weekly extract data for a specific corporate creditor. Registered-user access
     via the developer portal.
   humanURL: https://developer.payments.ca/ccin-lookup-api/apis
+  baseURL: https://api.payments.ca
   tags:
   - CCIN
   - Reference Data
   properties:
+  - type: OpenAPI
+    url: openapi/ccin-lookup-api-openapi.yml
   - type: Documentation
     url: https://developer.payments.ca/ccin-lookup-api/apis
+  - type: Overlay
+    url: overlays/ccin-lookup-api-overlay.yaml
 common:
+- type: DomainSecurity
+  url: security/payments-canada-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/payments-canada-agentic-access.yml
+- type: OAuthScopes
+  url: scopes/payments-canada-scopes.yml
+- type: Authentication
+  url: authentication/payments-canada-authentication.yml
+- type: Conventions
+  url: conventions/payments-canada-conventions.yml
+- type: ErrorCatalog
+  url: errors/payments-canada-problem-types.yml
+- type: Conformance
+  url: conformance/payments-canada-conformance.yml
+- type: Lifecycle
+  url: lifecycle/payments-canada-lifecycle.yml
+- type: DataModel
+  url: data-model/payments-canada-data-model.yml
+- type: WellKnown
+  url: well-known/payments-canada-well-known.yml
+- type: Sandbox
+  url: sandbox/payments-canada-sandbox.yml
+- type: MCPServer
+  url: mcp/payments-canada-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/payments-canada-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/payments-canada-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 - type: Website
   url: https://www.payments.ca/
 - type: DeveloperPortal
@@ -207,6 +265,16 @@ common:
   url: https://developer.payments.ca/getting-started
 - type: GitHubOrganization
   url: https://github.com/paymentscanada
+- type: APIStandards
+  url: https://developer.payments.ca/payments-canada-api-standards
+- type: Postman
+  url: https://github.com/paymentscanada/api-toolkit/tree/develop/postman-collection
+- type: Support
+  url: https://developer.payments.ca/content/contact-us
+- type: TermsOfService
+  url: https://developer.payments.ca/legal
+- type: PrivacyPolicy
+  url: https://developer.payments.ca/legal
 - type: LinkedIn
   url: https://www.linkedin.com/company/payments-canada
 - type: Twitter

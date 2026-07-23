@@ -1,0 +1,111 @@
+generated: '2026-07-23'
+method: derived
+source: openapi/ schema $ref graph (ISO 20022 message wrappers + FIF/CCIN records)
+note: >-
+  The RTR rails do not model persistent CRUD resources; they exchange ISO 20022
+  messages, each wrapped with a Business Application Header (BAH, head.001). The
+  reference-data APIs (FIF/CCIN) return record entities. Relationships below are
+  derived from schema composition ($ref/allOf/oneOf) in the specs.
+
+entities:
+- name: BusinessApplicationHeader
+  iso: head.001.001.02
+  domain: RTR rails
+  description: ISO 20022 BAH prepended to every RTR message wrapper.
+- name: FIToFICustomerCreditTransfer
+  iso: pacs.008
+  domain: RTR payments
+  description: Outbound RTR credit transfer request payload.
+- name: FIToFIPaymentStatusRequest
+  iso: pacs.028
+  domain: RTR payments
+  description: Payment status report enquiry.
+- name: FIToFIPaymentStatusReport
+  iso: pacs.002
+  domain: RTR payments
+  description: Payment status report; transaction status RJCT on failure.
+- name: MessageReject
+  iso: admi.002
+  domain: RTR rails
+  description: Syntax-error reject wrapper carrying a RejectionReason.
+- name: SystemEventNotification
+  iso: admi.004
+  domain: RTR heartbeat
+  description: Inbound heartbeat request.
+- name: SystemEventAcknowledgement
+  iso: admi.011
+  domain: RTR heartbeat
+  description: Heartbeat acknowledgement.
+- name: GetAccount
+  iso: camt.003
+  domain: RTR clearing & settlement
+  description: Account query for interest / balance reports.
+- name: ReturnAccount
+  iso: camt.004
+  domain: RTR clearing & settlement
+  description: Account return carrying interest/balance data (or error).
+- name: MasterExtractRecord
+  domain: reference data (FIF/CCIN)
+  description: Master extract record for financial institutions (FIF) or corporate creditors (CCIN).
+- name: UpdateExtractRecord
+  domain: reference data (FIF/CCIN)
+  description: Weekly-updated extract record.
+- name: BranchRecord
+  domain: reference data (FIF)
+  description: Branch master record keyed by DPRN.
+
+relationships:
+- from: SendPayment
+  to: BusinessApplicationHeader
+  type: has_one
+  via: business_application_header
+- from: SendPayment
+  to: FIToFICustomerCreditTransfer
+  type: has_one
+  via: fi_to_fi_customer_credit_transfer
+- from: PacsResponse
+  to: FIToFIPaymentStatusReport
+  type: has_one
+  via: fi_to_fi_payment_status_report
+- from: PacsResponse
+  to: MessageReject
+  type: has_one
+  via: message_reject
+  note: oneOf — either a status report or a reject
+- from: ReceiveHeartbeat
+  to: SystemEventNotification
+  type: has_one
+  via: system_event_notification
+- from: AdmiResponse
+  to: SystemEventAcknowledgement
+  type: has_one
+  via: system_event_acknowledgement
+- from: InterestRequest
+  to: GetAccount
+  type: has_one
+  via: get_account
+- from: InterestResponse
+  to: ReturnAccount
+  type: has_one
+  via: return_account
+- from: BranchRecord
+  to: MasterExtractRecord
+  type: belongs_to
+  via: dprn
+  note: Branch DPRN keys into the institution master (FIF)
+
+identifiers:
+- name: UETR
+  header: x-uetr
+  format: uuid
+  scope: RTR credit transfer end-to-end reference
+- name: traceability-id
+  header: traceability-id
+  format: uuid
+  scope: per-call trace propagated downstream
+- name: CCIN
+  path_param: ccin
+  scope: Corporate Creditor Identification Number lookup key
+- name: DPRN
+  path_param: dprn
+  scope: FIF branch designation/routing key
