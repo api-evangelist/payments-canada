@@ -1,0 +1,138 @@
+aid: payments-canada
+name: Payments Canada
+review:
+  question: Does Payments Canada expose a real, first-party public developer API with downloadable specifications?
+  answer: true
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Payments Canada operates a real, publicly registerable first-party API
+    developer portal at https://developer.payments.ca (HTTP 200, launched
+    2020-02-19). It is NOT a bank — it is Canada's public-purpose payment
+    clearing-and-settlement infrastructure operator (created by the Canadian
+    Payments Act, overseen by the Bank of Canada and the Minister of Finance),
+    running Lynx (high-value ISO 20022 RTGS), ACSS (retail/ACH), and the
+    in-progress Real-Time Rail (RTR, ISO 20022). The portal catalogs a real set
+    of API products (verified HTTP 200): RTR Sandbox, Lynx Sandbox, ACSS, FIF
+    Extracts, FIF Branch, CCIN Extracts, CCIN Lookup, an Access Token Generation
+    helper, and an RTR FIN Lookup Database (gated, HTTP 403). Four RTR sandbox
+    OpenAPI 3.0.3 documents are publicly downloadable and were harvested
+    verbatim from the portal's Swagger UI. This is distinct from Canada's
+    Consumer-Driven Banking (open banking) framework, which is legislated but
+    not yet operational and is overseen by the FCAC — Payments Canada exposes no
+    FDX / 1033-style consumer-data API and makes no such consumer-data claim.
+  charterType: >-
+    Public-purpose payments infrastructure operator (statutory body under the
+    Canadian Payments Act; membership organization of Canadian financial
+    institutions; overseen by the Bank of Canada / Minister of Finance). Not a
+    Schedule I/II bank, credit union, or neobank.
+  firstPartyDeveloperPortal: true
+  portalURL: https://developer.payments.ca/
+  portalStatus: 200
+  downloadableSpecs: true
+  specProvenance: |
+    Four OpenAPI 3.0.3 documents downloaded verbatim (HTTP 200) from the
+    portal's Apigee-backed Swagger UI bucket
+    (https://storage.googleapis.com/prod-apigee-bucket-swagger/), referenced by
+    index.html:
+      - spec-exchange/R1-Inbound-Participant-PaymentAPI.yml -> openapi/rtr-inbound-participant-payment-api-openapi.yml
+      - spec-exchange/R1-Inbound-CSP-HeartbeatAPI.yml       -> openapi/rtr-inbound-csp-heartbeat-api-openapi.yml
+      - spec-CnS/interest-report.yaml                       -> openapi/rtr-interest-report-api-openapi.yml
+      - spec-CnS/payment-capacity-balance-report.yaml       -> openapi/rtr-balance-report-api-openapi.yml
+    All four declare server https://api.payments.ca/rtr-sandbox and an oAuth
+    security scheme.
+  authModel: >-
+    OAuth2 client-credentials — a per-app Consumer Key / Consumer Secret is
+    issued on the developer portal (Apigee) and presented on the token endpoint;
+    the Swagger specs declare an oAuth security scheme. Production access is
+    additionally license/agreement gated.
+  fdxParticipant: false
+  regulatoryPosture: |
+    Payments Canada is the payments-rail operator, not the open-banking
+    authority. Canada's Consumer-Driven Banking (CDB) framework — legislated via
+    Budget 2024 and the Fall Economic Statement 2024, to be overseen by the FCAC
+    — is not yet operational, and Payments Canada does not expose a CDB / FDX /
+    1033-equivalent consumer-data-access API. Its modernization program is
+    payment-system-side (ISO 20022 migration, Lynx, and the Real-Time Rail).
+  isoMessaging:
+    - pacs.008 (Customer Credit Transfer)
+    - pacs.028 (Payment Status Request)
+    - pacs.002 (Payment Status Report)
+    - admi.004 (System Event Notification / heartbeat)
+    - admi.011 (System Event Acknowledgement)
+    - admi.002 (Message Reject)
+    - camt.003 (Get Account)
+    - camt.004 (Return Account)
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.payments.ca/rtr-sandbox
+      documented: true
+      note: RTR sandbox REST APIs carrying ISO 20022 payloads; OAuth2 secured.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket surface is documented for any Payments Canada API.
+  apiProductsCatalog:
+    - name: RTR Sandbox API
+      url: https://developer.payments.ca/rtr-sandbox-api/apis
+      status: 200
+      openapiHarvested: true
+    - name: Lynx Sandbox API
+      url: https://developer.payments.ca/lynx-sandbox-api/apis
+      status: 200
+      openapiHarvested: false
+      note: Member-gated; no public OpenAPI.
+    - name: ACSS API
+      url: https://developer.payments.ca/acss-api/apis
+      status: 200
+      openapiHarvested: false
+    - name: FIF Extracts API
+      url: https://developer.payments.ca/fif-extracts-api/apis
+      status: 200
+      openapiHarvested: false
+    - name: FIF Branch API
+      url: https://developer.payments.ca/fif-branch-api/apis
+      status: 200
+      openapiHarvested: false
+    - name: CCIN Extracts API
+      url: https://developer.payments.ca/ccin-extracts-api/apis
+      status: 200
+      openapiHarvested: false
+    - name: CCIN Lookup API
+      url: https://developer.payments.ca/ccin-lookup-api/apis
+      status: 200
+      openapiHarvested: false
+    - name: RTR FIN Lookup Database
+      url: https://developer.payments.ca/rtr-fin-lookup-database/apis
+      status: 403
+      openapiHarvested: false
+      note: Gated (HTTP 403) at review time.
+sources:
+  - url: https://developer.payments.ca/apis
+    type: APIReference
+    note: Portal API catalog listing all products; HTTP 200.
+  - url: https://developer.payments.ca/rtr-sandbox-api/apis
+    type: Documentation
+    note: RTR sandbox operations, ISO 20022 message mapping, Swagger UI link.
+  - url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+    type: APIReference
+    note: Swagger UI referencing the four downloadable RTR OpenAPI documents.
+  - url: https://www.payments.ca/payments-canada-launches-api-developer-portal
+    type: Blog
+    note: Portal launch announcement (2020-02-19) and organization overview.
+  - url: https://github.com/paymentscanada/api-toolkit
+    type: SourceCode
+    note: Official code samples, Postman collections, and OpenAPI specs; HTTP 200.
+actions:
+  openapiHarvested: true
+  openapiCount: 4
+  apisYmlUpdated: true
+  reason: |
+    A real first-party developer portal with publicly downloadable OpenAPI
+    specifications was confirmed. Four RTR sandbox OpenAPI 3.0.3 documents were
+    harvested verbatim into openapi/, and ten documented API products were
+    recorded as apis[] entries with verified humanURLs. Posture recorded
+    honestly: payments-rail operator (not a bank, not an open-banking / FDX /
+    1033 data provider); OAuth2 client-credentials auth; production gated.
