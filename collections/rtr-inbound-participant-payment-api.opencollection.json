@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Inbound Participant Payment API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "single credit transfer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Single Credit Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.payments.ca/rtr-sandbox/payments",
+            "headers": [
+              {
+                "name": "traceability-id",
+                "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+              },
+              {
+                "name": "x-jws-signature",
+                "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+              },
+              {
+                "name": "x-uetr",
+                "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.payments.ca/accesstoken",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This service can be used by a RTR Sending Participant to send a new RTR Payment to RTR Exchange using ISO 20022 pacs.008 message format."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "single credit transfer status enquiry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Payment Status Report Enquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.payments.ca/rtr-sandbox/payments/status",
+            "headers": [
+              {
+                "name": "traceability-id",
+                "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+              },
+              {
+                "name": "x-jws-signature",
+                "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+              },
+              {
+                "name": "x-uetr",
+                "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.payments.ca/accesstoken",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This service can be used by a RTR Sending Participant or RTR Receiving Participant to send a Payment Status Report Enquiry using ISO 20022 pacs.028 message format"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

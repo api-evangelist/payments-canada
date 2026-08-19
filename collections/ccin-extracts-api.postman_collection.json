@@ -1,0 +1,331 @@
+{
+  "item": [
+    {
+      "id": "bef86e28-72c9-4100-87fd-ca263d34486c",
+      "name": "master-extract-resource",
+      "description": {
+        "content": "Master Extract Resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7ed86ede-0d81-498c-ba96-16d8ad1f78cc",
+          "name": "Retrieve the master extract",
+          "request": {
+            "name": "Retrieve the master extract",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extracts",
+                "master"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "allRecords",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "asAtDate",
+                  "value": "<date>",
+                  "description": "Setting this parameter will retrieve the most recent extract prior to the date sent in. Format expected is yyyy-MM-dd"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "How many records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Start page to get the data for the dataset"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The field to sort on"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<boolean>",
+                  "description": "The direction to sort on, true for ascending"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.ccin.api.v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a95e39d3-bc2f-4a97-8f13-0336ab664a17",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extracts",
+                    "master"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "allRecords",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "asAtDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.ccin.api.v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.ccin.api.v1+json"
+                }
+              ],
+              "body": "[\n  {\n    \"acceptableMediaType\": \"1\",\n    \"address1\": \"string\",\n    \"address2\": \"string\",\n    \"address3\": \"string\",\n    \"address4\": \"string\",\n    \"ccin\": \"string\",\n    \"countryCode\": \"UNITED STATES\",\n    \"cycleDate\": \"2004-05-10\",\n    \"cycleNumber\": 7574,\n    \"dateCcinIssued\": \"2017-12-26\",\n    \"effectiveFrom\": \"1986-12-08\",\n    \"leadFiName\": \"string\",\n    \"leadFiNum\": 8341,\n    \"postal\": \"string\",\n    \"provCode\": \"string\",\n    \"returnCheckDprn\": \"string\",\n    \"shortname\": \"string\",\n    \"sicCode\": \"string\",\n    \"status\": \"D\",\n    \"statusDate\": \"1950-08-27\"\n  },\n  {\n    \"acceptableMediaType\": \"2\",\n    \"address1\": \"string\",\n    \"address2\": \"string\",\n    \"address3\": \"string\",\n    \"address4\": \"string\",\n    \"ccin\": \"string\",\n    \"countryCode\": \"UNITED STATES\",\n    \"cycleDate\": \"1973-01-03\",\n    \"cycleNumber\": 1147,\n    \"dateCcinIssued\": \"1961-02-11\",\n    \"effectiveFrom\": \"1995-11-30\",\n    \"leadFiName\": \"string\",\n    \"leadFiNum\": 5478,\n    \"postal\": \"string\",\n    \"provCode\": \"string\",\n    \"returnCheckDprn\": \"string\",\n    \"shortname\": \"string\",\n    \"sicCode\": \"string\",\n    \"status\": \"I\",\n    \"statusDate\": \"1996-02-02\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "61cc8954-c015-45cb-a802-6e71985f885c",
+      "name": "update-extract-resource",
+      "description": {
+        "content": "Update Extract Resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "deac6dd6-dabd-423d-b4cd-2f8b5fa52267",
+          "name": "Get the Update Extract for the most recent cycle",
+          "request": {
+            "name": "Get the Update Extract for the most recent cycle",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extracts",
+                "updated"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "allRecords",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Setting this parameter will set the end date to retrieve data for. Format expected is yyyy-MM-dd"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "How many records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Start page to get the data for the dataset"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The field to sort on"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<boolean>",
+                  "description": "The direction to sort on, true for ascending"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Setting this parameter will set the start date to retrieve data for. Format expected is yyyy-MM-dd"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.ccin.api.v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11609b4c-dbdf-4739-b9e7-d819a83381cf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extracts",
+                    "updated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "allRecords",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.ccin.api.v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.ccin.api.v1+json"
+                }
+              ],
+              "body": "[\n  {\n    \"acceptableMediaType\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"action\": \"D\",\n    \"address1\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"address2\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"address3\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"address4\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"ccin\": \"string\",\n    \"countryCode\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"cycleDate\": \"1993-01-15\",\n    \"dateCcinIssued\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"leadFi\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"postal\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"provCode\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"returnCheckDprn\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"shortname\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"sicCode\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"status\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"statusDate\": {\n      \"changed\": false,\n      \"value\": {}\n    }\n  },\n  {\n    \"acceptableMediaType\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"action\": \"D\",\n    \"address1\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"address2\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"address3\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"address4\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"ccin\": \"string\",\n    \"countryCode\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"cycleDate\": \"1966-07-26\",\n    \"dateCcinIssued\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"leadFi\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"postal\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"provCode\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"returnCheckDprn\": {\n      \"changed\": false,\n      \"value\": {}\n    },\n    \"shortname\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"sicCode\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"status\": {\n      \"changed\": true,\n      \"value\": {}\n    },\n    \"statusDate\": {\n      \"changed\": false,\n      \"value\": {}\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.payments.ca",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7d2b4efe-d78e-4187-b3a6-7f2cca709d26",
+    "name": "CCIN Output API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to retrieve ccin extract data.  This is the same data previously provided by the weekly extract files from CCIN.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CCIN Output API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "master-extract-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the master extract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/extracts/master",
+            "params": [
+              {
+                "name": "allRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "asAtDate",
+                "value": "",
+                "type": "query",
+                "description": "Setting this parameter will retrieve the most recent extract prior to the date sent in. Format expected is yyyy-MM-dd"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "filter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records to retrieve"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Start page to get the data for the dataset"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort on"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort on, true for ascending"
+              }
+            ]
+          },
+          "docs": "Retrieve the master extract"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "update-extract-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the Update Extract for the most recent cycle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/extracts/updated",
+            "params": [
+              {
+                "name": "allRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Setting this parameter will set the end date to retrieve data for. Format expected is yyyy-MM-dd"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records to retrieve"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Start page to get the data for the dataset"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort on"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort on, true for ascending"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Setting this parameter will set the start date to retrieve data for. Format expected is yyyy-MM-dd"
+              }
+            ]
+          },
+          "docs": "Get the Update Extract for the most recent cycle"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

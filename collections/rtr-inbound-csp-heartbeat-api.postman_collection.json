@@ -1,0 +1,680 @@
+{
+  "item": [
+    {
+      "id": "8eb2a972-18e5-4965-b99d-22b32defe189",
+      "name": "application level heartbeat",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c3d1da43-9f10-4bf2-a5da-0d3964af8291",
+          "name": "Receive Heartbeat Request",
+          "request": {
+            "name": "Receive Heartbeat Request",
+            "description": {
+              "content": "This service is used to receive heartbeat requests from participating systems (e.g. Exchange) using ISO 20022 admi.004 message format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inbound-heartbeat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                "key": "traceability-id",
+                "value": "<uuid>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The JWS signature of request payload.",
+                "key": "x-jws-signature",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                "key": "x-uetr",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api.v1+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api.v1+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "client_credentials"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.payments.ca/accesstoken"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6f55217-53ea-45fa-aaf6-64413b5e84f8",
+              "name": "Heartbeat Response Sent by Exchange",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) The JWS signature of response payload.",
+                  "key": "x-jws-signature",
+                  "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                  "key": "traceability-id",
+                  "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"message_reject\": {\n    \"value\": \"reference MessageRejectV01.yaml#/definitions/message_reject not found in the OpenAPI spec\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d25e7ee-2571-455c-a854-a99978c7d02b",
+              "name": "Bad Request - Validation Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                  "key": "traceability-id",
+                  "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a276442-542f-4ec3-8e36-3bf93fea1219",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                  "key": "traceability-id",
+                  "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a26ceb6b-d879-4ab6-9206-5ddfc3a19570",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d03d09e9-46f2-4d66-b272-b8bd025707f1",
+              "name": "Resources Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f017951-e7c4-49ad-a8e0-e8f1b972dd53",
+              "name": "Too many requests; blocked due to rate limiting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9667e05-633f-46d1-9db8-687bbaa56c94",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                  "key": "traceability-id",
+                  "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53ea2ee4-5c48-43b2-b7f6-7f18facb1376",
+              "name": "Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inbound-heartbeat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"system_event_notification\": {\n    \"value\": \"reference SystemEventNotificationV02.yaml#/definitions/system_event_notification not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.payments.ca/rtr-sandbox",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c0ad769e-fa5f-497b-98a1-4eb24e50cbfd",
+    "name": "Inbound Exchange Heartbeat API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Payments Related Endpoints for RTR Exchange, including Credit Transfer, and associated Enquiries.\n\n# Pre-requisites:\n1. Create an app with the `rtr-sandbox-product` on the [Developer Portal](https://developer.payments.ca/)\n2. Mark down the `Consumer Key` and `Consumer Secret`\n\n# Calling this API on this page\n1. Click the Authorize button.\n2. Fill in the username with your Consumer Key and fill in the password with your Consumer Secret.\n3. Click Authorize.\n4. Expand the appropraite API and click \"Try it out\".\n5. Fill in the appropriate details in the body.\n6. Click \"Execute\"\n7. The server response will be found under the curl call.\n",
+      "type": "text/plain"
+    }
+  }
+}

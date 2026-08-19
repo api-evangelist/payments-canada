@@ -2,12 +2,10 @@ generated: '2026-07-23'
 method: derived
 status: candidate
 source: derived from openapi/ operations (no official Payments Canada MCP server found)
-note: >-
-  Payments Canada publishes no hosted/remote MCP server. This is a candidate tool
-  list derived one-tool-per-operation from the 8 harvested OpenAPI specs, so an
-  agent has a machine-readable surface. RTR rail tools carry ISO 20022 message
-  payloads and require OAuth2 client-credentials + JWS signing; FIF tools use a
-  Bearer token. Not a live endpoint.
+note: Payments Canada publishes no hosted/remote MCP server. This is a candidate tool list derived one-tool-per-operation
+  from the 8 harvested OpenAPI specs, so an agent has a machine-readable surface. RTR rail tools carry
+  ISO 20022 message payloads and require OAuth2 client-credentials + JWS signing; FIF tools use a Bearer
+  token. Not a live endpoint.
 server:
   name: payments-canada
   transport: http
@@ -46,3 +44,9 @@ tools:
 - name: get_fif_updated_extract
   description: Get the FIF updated extract for a date window.
   source_operation: openapi/fif-extracts-api-openapi.yml#getUpdate
+deployment:
+  mode: none
+  verified: derived
+  tools: 11
+  checked: '2026-08-12'
+  source: catalog MCP census

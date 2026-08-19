@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Interest Report",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Interest Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /interest-report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.payments.ca/rtr-sandbox/interest-report",
+            "headers": [
+              {
+                "name": "x-jws-signature",
+                "value": ""
+              },
+              {
+                "name": "traceability-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.payments.ca/accesstoken",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This service can be used by the Participants to retrieve the Interest Report. Message format - ISO 20022 camt.003.001.07 with BAH ISO 20022 head.001.001.02"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

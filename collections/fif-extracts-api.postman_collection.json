@@ -1,0 +1,755 @@
+{
+  "item": [
+    {
+      "id": "a6d497ae-bec2-4c21-8973-ff82ef85c930",
+      "name": "fif-extracts-resource",
+      "description": {
+        "content": "Fif Extracts Resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc427b05-dbd2-4a9a-aca5-62ca611494ff",
+          "name": "Get the master extract. Defaults to last completed cycle unless specific date in 'asAtDate' parameter",
+          "request": {
+            "name": "Get the master extract. Defaults to last completed cycle unless specific date in 'asAtDate' parameter",
+            "description": {},
+            "url": {
+              "path": [
+                "extracts",
+                "master"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asAtDate",
+                  "value": "<dateTime>",
+                  "description": "Retrieve the extract record(s) in effective as at this date (yyyy-MM-dd). If not provided, then the effective date from latest completed cycle is used."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "limit"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.fif.api.v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dde2d393-6ba4-45b9-ad3c-2a4ffbda2b8a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "master"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.fif.api.v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.fif.api.v1+json"
+                }
+              ],
+              "body": "[\n  {\n    \"branchClassification\": \"string\",\n    \"branchDomicile\": \"string\",\n    \"civicAddress\": \"string\",\n    \"crossReferenceNumber\": \"string\",\n    \"effectiveDate\": \"string\",\n    \"englishInstitutionName\": \"string\",\n    \"exchangePoint\": \"string\",\n    \"frenchInstitutionName\": \"string\",\n    \"identificationNumber\": \"string\",\n    \"indirectCreditsAcctNumber\": \"string\",\n    \"indirectCreditsBranchIDNumber\": \"string\",\n    \"indirectMICRAcctNumber\": \"string\",\n    \"indirectMICRBranchIDNumber\": \"string\",\n    \"languageCode\": \"string\",\n    \"postalAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"provinceCode\": \"string\",\n    \"servicabilityCode\": \"string\",\n    \"status\": \"string\",\n    \"townCity\": \"string\"\n  },\n  {\n    \"branchClassification\": \"string\",\n    \"branchDomicile\": \"string\",\n    \"civicAddress\": \"string\",\n    \"crossReferenceNumber\": \"string\",\n    \"effectiveDate\": \"string\",\n    \"englishInstitutionName\": \"string\",\n    \"exchangePoint\": \"string\",\n    \"frenchInstitutionName\": \"string\",\n    \"identificationNumber\": \"string\",\n    \"indirectCreditsAcctNumber\": \"string\",\n    \"indirectCreditsBranchIDNumber\": \"string\",\n    \"indirectMICRAcctNumber\": \"string\",\n    \"indirectMICRBranchIDNumber\": \"string\",\n    \"languageCode\": \"string\",\n    \"postalAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"provinceCode\": \"string\",\n    \"servicabilityCode\": \"string\",\n    \"status\": \"string\",\n    \"townCity\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a61606a8-7b70-4dc3-9b12-e15c481b6e7d",
+              "name": "Date parameter is not formatted correctly or is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "master"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0217b94f-bcb0-41eb-9f49-98f4f0ed699d",
+              "name": "Unauthorized User (Please check the access token).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "master"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c70524f7-b7b8-43ab-9ed5-0caed95cbb40",
+              "name": "provided date is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "master"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e740eeff-dec8-439f-a6e1-9ae5d292d8f2",
+              "name": "Not Acceptable. Possible explanation Accept header is not correct.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "master"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d410a596-e1c8-4da7-85d4-1317921f53a6",
+              "name": "Internal Server Error (E.g. Quota Violation)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "master"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6925bf8-996f-4643-bb0e-a51475861a97",
+          "name": "Get the updated branches from the extracts for a given asAtDate range between the 'startDate' and 'endDate'",
+          "request": {
+            "name": "Get the updated branches from the extracts for a given asAtDate range between the 'startDate' and 'endDate'",
+            "description": {
+              "content": "The 'startDate' and 'endDate' are optional. When not provided, default values will be used, resulting in updated branches from the latest completed cycle being returned. The range is inclusive, meaning an effective date equal to the 'startDate' or 'endDate' will be included.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extracts",
+                "updated"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "End of effective date range (yyyy-MM-dd). If not provided, then the effective date from the latest completed cycle is used"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Start of effective date range (yyyy-MM-dd). If not provided, then the effective date from the latest completed cycle is used"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.fif.api.v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2399d0c4-d4d0-49f9-a6d4-3215c7423b31",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "updated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.fif.api.v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.fif.api.v1+json"
+                }
+              ],
+              "body": "[\n  {\n    \"branchClassification\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"branchDomicile\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"civicAddress\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"crossReferenceNumber\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"effectiveDate\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"englishInstitutionName\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"exchangePoint\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"frenchInstitutionName\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"identificationNumber\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"indirectCreditsAcctNumber\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"indirectCreditsBranchIDNumber\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"indirectMICRAcctNumber\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"indirectMICRBranchIDNumber\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"languageCode\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"postalAddress\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"postalCode\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"provinceCode\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"servicabilityCode\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"status\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"townCity\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"transactionCode\": \"string\"\n  },\n  {\n    \"branchClassification\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"branchDomicile\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"civicAddress\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"crossReferenceNumber\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"effectiveDate\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"englishInstitutionName\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"exchangePoint\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"frenchInstitutionName\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"identificationNumber\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"indirectCreditsAcctNumber\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"indirectCreditsBranchIDNumber\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"indirectMICRAcctNumber\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"indirectMICRBranchIDNumber\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"languageCode\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"postalAddress\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"postalCode\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"provinceCode\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"servicabilityCode\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"status\": {\n      \"changed\": true,\n      \"value\": \"string\"\n    },\n    \"townCity\": {\n      \"changed\": false,\n      \"value\": \"string\"\n    },\n    \"transactionCode\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "642eae7d-434a-42aa-b88e-988b865a736a",
+              "name": "Date parameter is not formatted correctly or is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "updated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53abd3e4-250d-4ca7-baf7-82f429b6b84b",
+              "name": "Unauthorized User (Please check the access token).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "updated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4cf944b0-ca40-490d-93dd-70bead6e42b9",
+              "name": "updated extract file is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "updated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d74e3810-d734-46ff-9b30-e5ad79e38e53",
+              "name": "Not Acceptable. Possible explanation Accept header is not correct.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "updated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "27692bb8-0bfd-4c0b-a511-fa89220ffb5b",
+              "name": "Internal Server Error (E.g. Quota Violation)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extracts",
+                    "updated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.payments.ca/fif-extracts",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e31b8107-e2ca-4a5b-9aa7-87a6ce9668a9",
+    "name": "FIF Output API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api to retrieve branch extract data.  This is the same data previously provided by the weekly extract files from FIF.",
+      "type": "text/plain"
+    }
+  }
+}

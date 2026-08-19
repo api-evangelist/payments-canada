@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FIF Output API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "fif-extracts-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the master extract. Defaults to last completed cycle unless specific date in 'asAtDate' parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/extracts/master",
+            "params": [
+              {
+                "name": "asAtDate",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve the extract record(s) in effective as at this date (yyyy-MM-dd). If not provided, then the effective date from latest completed cycle is used."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              }
+            ]
+          },
+          "docs": "Get the master extract. Defaults to last completed cycle unless specific date in 'asAtDate' parameter"
+        },
+        {
+          "info": {
+            "name": "Get the updated branches from the extracts for a given asAtDate range between the 'startDate' and 'endDate'",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/extracts/updated",
+            "params": [
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End of effective date range (yyyy-MM-dd). If not provided, then the effective date from the latest completed cycle is used"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start of effective date range (yyyy-MM-dd). If not provided, then the effective date from the latest completed cycle is used"
+              }
+            ]
+          },
+          "docs": "The 'startDate' and 'endDate' are optional. When not provided, default values will be used, resulting in updated branches from the latest completed cycle being returned. The range is inclusive, meaning an effective date equal to the 'startDate' or 'endDate' will be included."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

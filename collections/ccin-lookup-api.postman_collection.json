@@ -1,0 +1,133 @@
+{
+  "item": [
+    {
+      "id": "a0567176-a47f-4196-a7f6-d539fa7c5018",
+      "name": "ccin-extract-resource",
+      "description": {
+        "content": "Ccin Extract Resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80ecd092-7e50-44e5-a817-f8a92228bb5a",
+          "name": "Returns a single extract record by CCIN",
+          "request": {
+            "name": "Returns a single extract record by CCIN",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "ccins",
+                ":ccin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asAtDate",
+                  "value": "<date>",
+                  "description": "Setting this parameter will retrieve the most recent extract prior to the date sent in. Format expected is yyyy-MM-dd"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ccin",
+                  "description": "(Required) ccin"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.ccin.api.v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df893e0e-635b-4a35-a3d1-1d4f9e499efd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "ccins",
+                    ":ccin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ccin",
+                      "description": "(Required) ccin"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.ccin.api.v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.ccin.api.v1+json"
+                }
+              ],
+              "body": "{\n  \"acceptableMediaType\": \"1\",\n  \"address1\": \"string\",\n  \"address2\": \"string\",\n  \"address3\": \"string\",\n  \"address4\": \"string\",\n  \"ccin\": \"string\",\n  \"countryCode\": \"CANADA\",\n  \"cycleDate\": \"1957-12-06\",\n  \"cycleNumber\": 768,\n  \"dateCcinIssued\": \"1947-05-12\",\n  \"effectiveFrom\": \"1967-03-01\",\n  \"leadFiName\": \"string\",\n  \"leadFiNum\": 8974,\n  \"postal\": \"string\",\n  \"provCode\": \"string\",\n  \"returnCheckDprn\": \"string\",\n  \"shortname\": \"string\",\n  \"sicCode\": \"string\",\n  \"status\": \"I\",\n  \"statusDate\": \"1963-12-11\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.payments.ca",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fc8765fa-f1d6-4652-99dc-af4d667c4e36",
+    "name": "CCIN Output API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to retrieve ccin extract data.  This is the same data previously provided by the weekly extract files from CCIN.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,418 @@
+{
+  "item": [
+    {
+      "id": "9ea34da2-7586-4909-9589-8c543f323816",
+      "name": "fif-branches-resource",
+      "description": {
+        "content": "Fif Branches Resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de482dfc-4dc5-44fd-a391-4be5e5b4ae78",
+          "name": "Get branch details by DPRN from a given asAtDate - if no date is provided, latest completed cycle is used.",
+          "request": {
+            "name": "Get branch details by DPRN from a given asAtDate - if no date is provided, latest completed cycle is used.",
+            "description": {},
+            "url": {
+              "path": [
+                "branches",
+                ":dprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asAtDate",
+                  "value": "<dateTime>",
+                  "description": "Retrieve the extract record(s) in effective as at this date (yyyy-MM-dd). If not provided, then the effective date from latest completed cycle is used."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dprn",
+                  "description": "(Required) dprn"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.fif.api.v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d3bab4ad-378f-4dfa-8149-492022974e12",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches",
+                    ":dprn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dprn",
+                      "description": "(Required) dprn"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.fif.api.v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.fif.api.v1+json"
+                }
+              ],
+              "body": "{\n  \"branchClassification\": \"string\",\n  \"branchDomicile\": \"string\",\n  \"civicAddress\": \"string\",\n  \"crossReferenceNumber\": \"string\",\n  \"effectiveDate\": \"string\",\n  \"englishInstitutionName\": \"string\",\n  \"exchangePoint\": \"string\",\n  \"frenchInstitutionName\": \"string\",\n  \"identificationNumber\": \"string\",\n  \"indirectCreditsAcctNumber\": \"string\",\n  \"indirectCreditsBranchIDNumber\": \"string\",\n  \"indirectMICRAcctNumber\": \"string\",\n  \"indirectMICRBranchIDNumber\": \"string\",\n  \"languageCode\": \"string\",\n  \"postalAddress\": \"string\",\n  \"postalCode\": \"string\",\n  \"provinceCode\": \"string\",\n  \"servicabilityCode\": \"string\",\n  \"status\": \"string\",\n  \"townCity\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a06ecc80-7304-4b8e-9970-944204af45ce",
+              "name": "Bad Request. Possible explanations DPRN not formatted properly - needs to be numerical and 9 digits in length  / asAtDate should be of type date (yyyy-MM-dd).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches",
+                    ":dprn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dprn",
+                      "description": "(Required) dprn"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b33ac47-fba0-4cf2-9b09-b4e2456307c9",
+              "name": "Unauthorized User (Please check the access token).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches",
+                    ":dprn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dprn",
+                      "description": "(Required) dprn"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14529ed5-8dfb-449b-8b37-85067fa57b5b",
+              "name": "Branch not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches",
+                    ":dprn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dprn",
+                      "description": "(Required) dprn"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e2c73ec-6b5a-42e0-bb6d-6f38d5e40f6b",
+              "name": "Not Acceptable. Possible explanation Accept header is not correct.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches",
+                    ":dprn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dprn",
+                      "description": "(Required) dprn"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "714e8303-0e23-41b7-9cd6-ea1ad469fe1a",
+              "name": "Internal Server Error (E.g. Quota Violation)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "branches",
+                    ":dprn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asAtDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dprn",
+                      "description": "(Required) dprn"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.payments.ca/fif-branch",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "031c973d-7b39-42b5-8b20-13871603c991",
+    "name": "FIF Output API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api to retrieve branch extract data.  This is the same data previously provided by the weekly extract files from FIF.",
+      "type": "text/plain"
+    }
+  }
+}

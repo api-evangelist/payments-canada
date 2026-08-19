@@ -1,0 +1,1300 @@
+{
+  "item": [
+    {
+      "id": "cdadd7c4-e949-4ffc-9592-038f34944409",
+      "name": "single credit transfer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd8a3861-b898-447b-96df-86f991b45e79",
+          "name": "Send Single Credit Transfer",
+          "request": {
+            "name": "Send Single Credit Transfer",
+            "description": {
+              "content": "This service can be used by a RTR Sending Participant to send a new RTR Payment to RTR Exchange using ISO 20022 pacs.008 message format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                "key": "traceability-id",
+                "value": "<uuid>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The JWS signature of request payload.",
+                "key": "x-jws-signature",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                "key": "x-uetr",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api.v1+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api.v1+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "client_credentials"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.payments.ca/accesstoken"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6a2ab36-73f5-436b-bd6b-97019bb0c2a3",
+              "name": "Payment Status Report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) The JWS signature of response payload.",
+                  "key": "x-jws-signature",
+                  "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"message_reject\": {\n    \"value\": \"reference MessageRejectV01.yaml#/definitions/message_reject not found in the OpenAPI spec\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49e272c2-6d01-43f6-b4f9-7d72605f781b",
+              "name": "Bad Request - Validation Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9aa6893f-e7f8-49ee-ac22-3579aec0b969",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6435e2d-682d-4cf3-a175-1f1686d1cadf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a20845a4-8ada-4db7-bbe0-9982984b5461",
+              "name": "Resources Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d550866b-a008-4bb0-be72-bdeeeb2b10a8",
+              "name": "Too many requests; blocked due to rate limiting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5019e0f-bee2-45af-b957-9e85d2414aec",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a67060bc-099c-4121-a9a5-b73a2d5053ae",
+              "name": "Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_customer_credit_transfer\": {\n    \"value\": \"reference FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cd0ae164-e053-4740-9e63-c0846880a4f1",
+      "name": "single credit transfer status enquiry",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "702002a4-5cb2-492a-af6f-5640f0c4578c",
+          "name": "Send Payment Status Report Enquiry",
+          "request": {
+            "name": "Send Payment Status Report Enquiry",
+            "description": {
+              "content": "This service can be used by a RTR Sending Participant or RTR Receiving Participant to send a Payment Status Report Enquiry using ISO 20022 pacs.028 message format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                "key": "traceability-id",
+                "value": "<uuid>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The JWS signature of request payload.",
+                "key": "x-jws-signature",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                "key": "x-uetr",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api.v1+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api.v1+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "client_credentials"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.payments.ca/accesstoken"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af2c6dc2-3dd8-4e2a-8f33-e509a0cfc605",
+              "name": "Payment Status Report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) The JWS signature of response payload.",
+                  "key": "x-jws-signature",
+                  "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"message_reject\": {\n    \"value\": \"reference MessageRejectV01.yaml#/definitions/message_reject not found in the OpenAPI spec\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a19d385-155c-4aee-bc6b-ba8c101c6ebb",
+              "name": "Bad Request - Validation Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd013c1f-6783-47a7-a0c4-6ffcda9fb833",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7eeacd5-80c6-4a0b-8260-9e3aca30ea20",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fa72dfd-8889-4536-9a96-aa8daee04f9f",
+              "name": "Resources Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8289249a-82c4-4ec6-924f-36abbe307d34",
+              "name": "Too many requests; blocked due to rate limiting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a25ab3a-1348-402d-8333-c3718d383a7f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api.v1+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f1524b2-9aa3-48be-ba62-15f68fcea146",
+              "name": "Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.",
+                    "key": "traceability-id",
+                    "value": "e23d32eb-c7f2-4836-a314-557efe95a525"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The JWS signature of request payload.",
+                    "key": "x-jws-signature",
+                    "value": "eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "This is the UETR, a unique ID generated for each Credit Transfer (pacs.008) used for message tracking purposes. This header is required for the following ISO specs:\n  - pacs.008\n  - pacs.004 (post-R1 scope)\n  - pacs.028\n  - camt.029 (post-R1 scope)\n  - camt.056 (post-R1 scope)\n  - camt.006\nNote that this header may be required in new ISO messages that are not listed above in future releases, the list will be updated per release.",
+                    "key": "x-uetr",
+                    "value": "eb6305c9-1f7f-49de-aed0-16487c27b42d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_application_header\": {\n    \"value\": \"reference BusinessApplicationHeaderV02.yaml#/definitions/business_application_header not found in the OpenAPI spec\"\n  },\n  \"fi_to_fi_payment_status_request\": {\n    \"value\": \"reference FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.payments.ca/rtr-sandbox",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bd0f219f-1738-4eae-acbb-5d14a5d9fd25",
+    "name": "Inbound Participant Payment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Payments Related Endpoints for RTR Exchange, including Credit Transfer, and associated Enquiries.\n\n# Pre-requisites:\n1. Create an app with the `rtr-sandbox-product` on the [Developer Portal](https://developer.payments.ca/)\n2. Mark down the `Consumer Key` and `Consumer Secret`\n\n# Calling this API on this page\n1. Click the Authorize button.\n2. Fill in the username with your Consumer Key and fill in the password with your Consumer Secret.\n3. Click Authorize.\n4. Expand the appropraite API and click \"Try it out\".\n5. Fill in the appropriate details in the body.\n6. Click \"Execute\"\n7. The server response will be found under the curl call.\n",
+      "type": "text/plain"
+    }
+  }
+}
