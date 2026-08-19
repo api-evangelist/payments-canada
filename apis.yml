@@ -33,7 +33,7 @@ tags:
 - Faster Payments
 created: '2026-07-23'
 modified: '2026-07-23'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: payments-canada:rtr-inbound-participant-payment-api
   name: RTR Sandbox - Inbound Participant Payment API
