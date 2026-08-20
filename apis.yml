@@ -21,6 +21,17 @@ description: >-
   license/agreement gated.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
+- Financial-Services
+- Payments
+- Canada
+- Payment Infrastructure
+- Clearing and Settlement
+- Real-Time Rail
+- ISO 20022
+- Lynx
+- Crown Corporation
+- Faster Payments
+tags_raw:
 - Financial Services
 - Payments
 - Canada
