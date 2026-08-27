@@ -46,102 +46,12 @@ created: '2026-07-23'
 modified: '2026-07-23'
 specificationVersion: '0.23'
 apis:
-- aid: payments-canada:rtr-inbound-participant-payment-api
-  name: RTR Sandbox - Inbound Participant Payment API
-  description: >-
-    Real-Time Rail sandbox API for sending an RTR payment (ISO 20022 pacs.008
-    Customer Credit Transfer) to another RTR participant and enquiring on payment
-    status (pacs.028), returning a payment status report (pacs.002) or message
-    reject (admi.002). OAuth2 client-credentials; OpenAPI 3.0.3 harvested verbatim
-    from the developer portal Swagger UI.
-  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
-  baseURL: https://api.payments.ca/rtr-sandbox
-  tags:
-  - Real-Time Rail
-  - Payments
-  - ISO 20022
-  properties:
-  - type: OpenAPI
-    url: openapi/rtr-inbound-participant-payment-api-openapi.yml
-  - type: Overlay
-    url: overlays/rtr-inbound-participant-payment-api-overlay.yaml
-  - type: Documentation
-    url: https://developer.payments.ca/rtr-sandbox-api/apis
-  - type: APIReference
-    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
-- aid: payments-canada:rtr-inbound-heartbeat-api
-  name: RTR Sandbox - Inbound Exchange Heartbeat API
-  description: >-
-    Real-Time Rail sandbox API for sending heartbeat requests between a participant
-    and the RTR exchange (ISO 20022 admi.004 System Event Notification), returning
-    admi.011 System Event Acknowledgement or admi.002 Message Reject. OAuth2
-    client-credentials; OpenAPI 3.0.3 harvested verbatim.
-  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
-  baseURL: https://api.payments.ca/rtr-sandbox
-  tags:
-  - Real-Time Rail
-  - ISO 20022
-  - Monitoring
-  properties:
-  - type: OpenAPI
-    url: openapi/rtr-inbound-csp-heartbeat-api-openapi.yml
-  - type: Overlay
-    url: overlays/rtr-inbound-csp-heartbeat-api-overlay.yaml
-  - type: Documentation
-    url: https://developer.payments.ca/rtr-sandbox-api/apis
-  - type: APIReference
-    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
-- aid: payments-canada:rtr-interest-report-api
-  name: RTR Sandbox - Interest Report API
-  description: >-
-    Real-Time Rail sandbox clearing-and-settlement API that calls the C&S system to
-    generate an interest report (ISO 20022 camt.003 Get Account returning camt.004
-    Return Account with interest data). OAuth2 client-credentials; OpenAPI 3.0.3
-    harvested verbatim.
-  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
-  baseURL: https://api.payments.ca/rtr-sandbox
-  tags:
-  - Real-Time Rail
-  - Clearing and Settlement
-  - ISO 20022
-  properties:
-  - type: OpenAPI
-    url: openapi/rtr-interest-report-api-openapi.yml
-  - type: Overlay
-    url: overlays/rtr-interest-report-api-overlay.yaml
-  - type: Documentation
-    url: https://developer.payments.ca/rtr-sandbox-api/apis
-  - type: APIReference
-    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
-- aid: payments-canada:rtr-balance-report-api
-  name: RTR Sandbox - Payment Capacity Balance Report API
-  description: >-
-    Real-Time Rail sandbox clearing-and-settlement API that calls the C&S system to
-    generate a payment-capacity balance report (ISO 20022 camt.003 Get Account
-    returning camt.004 Return Account with balance data). OAuth2 client-credentials;
-    OpenAPI 3.0.3 harvested verbatim.
-  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
-  baseURL: https://api.payments.ca/rtr-sandbox
-  tags:
-  - Real-Time Rail
-  - Clearing and Settlement
-  - ISO 20022
-  properties:
-  - type: OpenAPI
-    url: openapi/rtr-balance-report-api-openapi.yml
-  - type: Overlay
-    url: overlays/rtr-balance-report-api-overlay.yaml
-  - type: Documentation
-    url: https://developer.payments.ca/rtr-sandbox-api/apis
-  - type: APIReference
-    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
 - aid: payments-canada:lynx-sandbox-api
   name: Lynx Sandbox API
   description: >-
-    Sandbox APIs giving members access to test-data interactions with Lynx, Canada's
-    high-value ISO 20022 real-time gross settlement system. Access is member-gated
-    (contact your organization's Access Officer / Security Officer); no downloadable
-    OpenAPI is published publicly for Lynx.
+    Sandbox APIs giving members access to test-data interactions with Lynx, Canada's high-value ISO 20022
+    real-time gross settlement system. Access is member-gated (contact your organization's Access Officer
+    / Security Officer); no downloadable OpenAPI is published publicly for Lynx.
   humanURL: https://developer.payments.ca/lynx-sandbox-api/apis
   tags:
   - Lynx
@@ -153,8 +63,8 @@ apis:
 - aid: payments-canada:acss-api
   name: ACSS API
   description: >-
-    APIs for the Automated Clearing Settlement System (ACSS), Canada's retail
-    batch/ACH clearing rail. Access is member-gated via the developer portal.
+    APIs for the Automated Clearing Settlement System (ACSS), Canada's retail batch/ACH clearing rail.
+    Access is member-gated via the developer portal.
   humanURL: https://developer.payments.ca/acss-api/apis
   tags:
   - ACSS
@@ -163,79 +73,247 @@ apis:
   properties:
   - type: Documentation
     url: https://developer.payments.ca/acss-api/apis
-- aid: payments-canada:fif-extracts-api
-  name: FIF Extracts API
+- aid: payments-canada:payments-canada-application-level-heartbeat-api
+  name: Payments Canada application level heartbeat API
   description: >-
-    Financial Institutions File (FIF) extracts API returning master and weekly
-    updated extract data for Canadian financial institutions. Registered-user
-    access via the developer portal.
-  humanURL: https://developer.payments.ca/fif-extracts-api/apis
-  baseURL: https://api.payments.ca/fif-extracts
+    The application level heartbeat API from Payments Canada — 1 operation(s) for application level heartbeat.
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
   tags:
-  - Financial Institutions File
-  - Reference Data
+  - application level heartbeat
   properties:
   - type: OpenAPI
-    url: openapi/fif-extracts-api-openapi.yml
+    url: openapi/payments-canada-application-level-heartbeat-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
   - type: Documentation
     url: https://developer.payments.ca/fif-extracts-api/apis
-  - type: Overlay
-    url: overlays/fif-extracts-api-overlay.yaml
-- aid: payments-canada:fif-branch-api
-  name: FIF Branch API
-  description: >-
-    Financial Institutions File (FIF) branch API returning weekly branch extract
-    data for Canadian financial institutions. Registered-user access via the
-    developer portal.
-  humanURL: https://developer.payments.ca/fif-branch-api/apis
-  baseURL: https://api.payments.ca/fif-branch
-  tags:
-  - Financial Institutions File
-  - Reference Data
-  properties:
-  - type: OpenAPI
-    url: openapi/fif-branch-api-openapi.yml
   - type: Documentation
     url: https://developer.payments.ca/fif-branch-api/apis
-  - type: Overlay
-    url: overlays/fif-branch-api-overlay.yaml
-- aid: payments-canada:ccin-extracts-api
-  name: CCIN Extracts API
-  description: >-
-    Corporate Creditor Identification Number (CCIN) extracts API returning master
-    and updated extract data matching the weekly file distribution. Registered-user
-    access via the developer portal.
-  humanURL: https://developer.payments.ca/ccin-extracts-api/apis
-  baseURL: https://api.payments.ca
-  tags:
-  - CCIN
-  - Reference Data
-  properties:
-  - type: OpenAPI
-    url: openapi/ccin-extracts-api-openapi.yml
   - type: Documentation
     url: https://developer.payments.ca/ccin-extracts-api/apis
-  - type: Overlay
-    url: overlays/ccin-extracts-api-overlay.yaml
-- aid: payments-canada:ccin-lookup-api
-  name: CCIN Lookup API
-  description: >-
-    Corporate Creditor Identification Number (CCIN) single-lookup API returning
-    weekly extract data for a specific corporate creditor. Registered-user access
-    via the developer portal.
-  humanURL: https://developer.payments.ca/ccin-lookup-api/apis
-  baseURL: https://api.payments.ca
-  tags:
-  - CCIN
-  - Reference Data
-  properties:
-  - type: OpenAPI
-    url: openapi/ccin-lookup-api-openapi.yml
   - type: Documentation
     url: https://developer.payments.ca/ccin-lookup-api/apis
-  - type: Overlay
-    url: overlays/ccin-lookup-api-overlay.yaml
+- aid: payments-canada:payments-canada-ccin-extract-resource-api
+  name: Payments Canada Ccin Extract Resource API
+  description: Ccin Extract Resource
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - ccin-extract-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-ccin-extract-resource-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-fif-branches-resource-api
+  name: Payments Canada Fif Branches Resource API
+  description: Fif Branches Resource
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - fif-branches-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-fif-branches-resource-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-fif-extracts-resource-api
+  name: Payments Canada Fif Extracts Resource API
+  description: Fif Extracts Resource
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - fif-extracts-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-fif-extracts-resource-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-interest-report-api
+  name: Payments Canada Interest Report API
+  description: The Interest Report API from Payments Canada — 1 operation(s) for interest report.
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - Interest Report
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-interest-report-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-master-extract-resource-api
+  name: Payments Canada Master Extract Resource API
+  description: Master Extract Resource
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - master-extract-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-master-extract-resource-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-report-api
+  name: Payments Canada Report API
+  description: The report API from Payments Canada — 1 operation(s) for report.
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - report
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-report-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-single-credit-transfer-api
+  name: Payments Canada single credit transfer API
+  description: >-
+    The single credit transfer API from Payments Canada — 1 operation(s) for single credit transfer.
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - single credit transfer
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-single-credit-transfer-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-single-credit-transfer-status-enquiry-api
+  name: Payments Canada single credit transfer status enquiry API
+  description: >-
+    The single credit transfer status enquiry API from Payments Canada — 1 operation(s) for single credit
+    transfer status enquiry.
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - single credit transfer status enquiry
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-single-credit-transfer-status-enquiry-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
+- aid: payments-canada:payments-canada-update-extract-resource-api
+  name: Payments Canada Update Extract Resource API
+  description: Update Extract Resource
+  humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
+  baseURL: https://api.payments.ca/rtr-sandbox
+  tags:
+  - update-extract-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/payments-canada-update-extract-resource-api-openapi.yml
+  - type: Documentation
+    url: https://developer.payments.ca/rtr-sandbox-api/apis
+  - type: APIReference
+    url: https://storage.googleapis.com/prod-apigee-bucket-swagger/index.html
+  - type: Documentation
+    url: https://developer.payments.ca/fif-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/fif-branch-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-extracts-api/apis
+  - type: Documentation
+    url: https://developer.payments.ca/ccin-lookup-api/apis
 common:
+- type: Overlay
+  url: overlays/rtr-inbound-participant-payment-api-overlay.yaml
+- type: Overlay
+  url: overlays/rtr-inbound-csp-heartbeat-api-overlay.yaml
+- type: Overlay
+  url: overlays/rtr-interest-report-api-overlay.yaml
+- type: Overlay
+  url: overlays/rtr-balance-report-api-overlay.yaml
+- type: Overlay
+  url: overlays/fif-extracts-api-overlay.yaml
+- type: Overlay
+  url: overlays/fif-branch-api-overlay.yaml
+- type: Overlay
+  url: overlays/ccin-extracts-api-overlay.yaml
+- type: Overlay
+  url: overlays/ccin-lookup-api-overlay.yaml
 - type: DomainSecurity
   url: security/payments-canada-domain-security.yml
 - type: AgenticAccess
