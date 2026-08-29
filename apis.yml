@@ -19,6 +19,18 @@ description: >-
   — including downloadable RTR sandbox OpenAPI specifications — secured with OAuth2
   client-credentials (Consumer Key/Secret via Apigee); production access is
   license/agreement gated.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Financial-Services
