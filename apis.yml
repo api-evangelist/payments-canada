@@ -310,6 +310,9 @@ apis:
   - type: Documentation
     url: https://developer.payments.ca/ccin-lookup-api/apis
 common:
+- type: CapabilityMap
+  url: capabilities/payments-canada-capability-edges.yml
+  name: Payments Canada Business Capability Map
 - type: Overlay
   url: overlays/rtr-inbound-participant-payment-api-overlay.yaml
 - type: Overlay
