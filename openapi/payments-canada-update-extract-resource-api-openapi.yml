@@ -1,0 +1,134 @@
+openapi: 3.2.0
+info:
+  description: API to retrieve ccin extract data.  This is the same data previously provided by the weekly extract files from CCIN.
+  version: '1.0'
+  title: CCIN Output Update Extract Resource API
+servers:
+- url: https://api.payments.ca/
+tags:
+- name: update-extract-resource
+  description: Update Extract Resource
+paths:
+  /api/v1/extracts/updated:
+    get:
+      tags:
+      - update-extract-resource
+      summary: Get the Update Extract for the most recent cycle
+      operationId: getUpdateExtractUsingGET
+      parameters:
+      - name: allRecords
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: endDate
+        in: query
+        description: Setting this parameter will set the end date to retrieve data for. Format expected is yyyy-MM-dd
+        required: false
+        allowEmptyValue: false
+        schema:
+          type: string
+          format: date
+      - name: limit
+        in: query
+        description: How many records to retrieve
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: Start page to get the data for the dataset
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortField
+        in: query
+        description: The field to sort on
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: The direction to sort on, true for ascending
+        required: false
+        schema:
+          type: boolean
+      - name: startDate
+        in: query
+        description: Setting this parameter will set the start date to retrieve data for. Format expected is yyyy-MM-dd
+        required: false
+        allowEmptyValue: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.ccin.api.v1+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Update_Extract_Record'
+      deprecated: false
+components:
+  schemas:
+    Value_Changed:
+      type: object
+      properties:
+        changed:
+          type: boolean
+          description: Determines if the field value was changed
+        value:
+          type: object
+          description: The object that may have been, typically a string
+      title: Value changed
+    Update_Extract_Record:
+      type: object
+      properties:
+        acceptableMediaType:
+          $ref: '#/components/schemas/Value_Changed'
+        action:
+          type: string
+          description: 'The action performed on the CCIN. The values are: A - Added, C - Changed, D- Deleted'
+          enum:
+          - A
+          - C
+          - D
+        address1:
+          $ref: '#/components/schemas/Value_Changed'
+        address2:
+          $ref: '#/components/schemas/Value_Changed'
+        address3:
+          $ref: '#/components/schemas/Value_Changed'
+        address4:
+          $ref: '#/components/schemas/Value_Changed'
+        ccin:
+          type: string
+        countryCode:
+          $ref: '#/components/schemas/Value_Changed'
+        cycleDate:
+          type: string
+          format: date
+          description: The cycle date that this data belongs to
+        dateCcinIssued:
+          $ref: '#/components/schemas/Value_Changed'
+        leadFi:
+          $ref: '#/components/schemas/Value_Changed'
+        postal:
+          $ref: '#/components/schemas/Value_Changed'
+        provCode:
+          $ref: '#/components/schemas/Value_Changed'
+        returnCheckDprn:
+          $ref: '#/components/schemas/Value_Changed'
+        shortname:
+          $ref: '#/components/schemas/Value_Changed'
+        sicCode:
+          $ref: '#/components/schemas/Value_Changed'
+        status:
+          $ref: '#/components/schemas/Value_Changed'
+        statusDate:
+          $ref: '#/components/schemas/Value_Changed'
+      title: Update Extract Record

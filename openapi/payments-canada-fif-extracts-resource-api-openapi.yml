@@ -1,0 +1,238 @@
+openapi: 3.2.0
+info:
+  description: Api to retrieve branch extract data.  This is the same data previously provided by the weekly extract files from FIF.
+  version: '1.0'
+  title: FIF Output Fif Extracts Resource API
+servers:
+- url: https://api.payments.ca/fif-extracts
+tags:
+- name: fif-extracts-resource
+  description: Fif Extracts Resource
+paths:
+  /extracts/master:
+    get:
+      security:
+      - Bearer: []
+      tags:
+      - fif-extracts-resource
+      summary: Get the master extract. Defaults to last completed cycle unless specific date in 'asAtDate' parameter
+      operationId: getMaster
+      parameters:
+      - name: asAtDate
+        in: query
+        description: Retrieve the extract record(s) in effective as at this date (yyyy-MM-dd). If not provided, then the effective date from latest completed cycle is used.
+        required: false
+        allowEmptyValue: false
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        description: limit
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.fif.api.v1+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MasterRecord'
+            application/vnd.fif.api.v1+text:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MasterRecord'
+        '400':
+          description: Date parameter is not formatted correctly or is invalid.
+        '401':
+          description: Unauthorized User (Please check the access token).
+        '404':
+          description: provided date is not found
+        '406':
+          description: Not Acceptable. Possible explanation Accept header is not correct.
+        '500':
+          description: Internal Server Error (E.g. Quota Violation)
+      deprecated: false
+  /extracts/updated:
+    get:
+      security:
+      - Bearer: []
+      tags:
+      - fif-extracts-resource
+      summary: Get the updated branches from the extracts for a given asAtDate range between the 'startDate' and 'endDate'
+      description: The 'startDate' and 'endDate' are optional. When not provided, default values will be used, resulting in updated branches from the latest completed cycle being returned. The range is inclusive, meaning an effective date equal to the 'startDate' or 'endDate' will be included.
+      operationId: getUpdate
+      parameters:
+      - name: endDate
+        in: query
+        description: End of effective date range (yyyy-MM-dd). If not provided, then the effective date from the latest completed cycle is used
+        required: false
+        allowEmptyValue: false
+        schema:
+          type: string
+          format: date-time
+      - name: startDate
+        in: query
+        description: Start of effective date range (yyyy-MM-dd). If not provided, then the effective date from the latest completed cycle is used
+        required: false
+        allowEmptyValue: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.fif.api.v1+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UpdatesRecord'
+            application/vnd.fif.api.v1+text:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UpdatesRecord'
+        '400':
+          description: Date parameter is not formatted correctly or is invalid.
+        '401':
+          description: Unauthorized User (Please check the access token).
+        '404':
+          description: updated extract file is not found
+        '406':
+          description: Not Acceptable. Possible explanation Accept header is not correct.
+        '500':
+          description: Internal Server Error (E.g. Quota Violation)
+      deprecated: false
+components:
+  schemas:
+    UpdatesRecord:
+      type: object
+      properties:
+        branchClassification:
+          $ref: '#/components/schemas/ValueFlag'
+        branchDomicile:
+          $ref: '#/components/schemas/ValueFlag'
+        civicAddress:
+          $ref: '#/components/schemas/ValueFlag'
+        crossReferenceNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        effectiveDate:
+          $ref: '#/components/schemas/ValueFlag'
+        englishInstitutionName:
+          $ref: '#/components/schemas/ValueFlag'
+        exchangePoint:
+          $ref: '#/components/schemas/ValueFlag'
+        frenchInstitutionName:
+          $ref: '#/components/schemas/ValueFlag'
+        identificationNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectCreditsAcctNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectCreditsBranchIDNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectMICRAcctNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectMICRBranchIDNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        languageCode:
+          $ref: '#/components/schemas/ValueFlag'
+        postalAddress:
+          $ref: '#/components/schemas/ValueFlag'
+        postalCode:
+          $ref: '#/components/schemas/ValueFlag'
+        provinceCode:
+          $ref: '#/components/schemas/ValueFlag'
+        servicabilityCode:
+          $ref: '#/components/schemas/ValueFlag'
+        status:
+          $ref: '#/components/schemas/ValueFlag'
+        townCity:
+          $ref: '#/components/schemas/ValueFlag'
+        transactionCode:
+          type: string
+      title: UpdatesRecord
+    ValueFlag:
+      type: object
+      properties:
+        changed:
+          type: boolean
+        value:
+          type: string
+      title: ValueFlag
+    MasterRecord:
+      type: object
+      properties:
+        branchClassification:
+          type: string
+          description: This field identifies the type of branch.
+        branchDomicile:
+          type: string
+          description: To identify the commonly known name of the branch within a particular Town/City, e.g. Main and First Branch, or, as it would appear on a cheque.
+        civicAddress:
+          type: string
+          description: To identify the street address of the branch.
+        crossReferenceNumber:
+          type: string
+          description: When a branch is being closed, a Cross-Reference should be input in order that credit and debit items destined for that branch may be re-routed to an open branch. Also, for all sub-branches (02, 03, 05, 12, 13, 15, 22 or 25), it is mandatory that the parent branch be identified in the Cross- Reference field.
+        effectiveDate:
+          type: string
+          description: This field identifies the date when the input is in effect.
+        englishInstitutionName:
+          type: string
+          description: To identify the English version of the name of the financial institution.
+        exchangePoint:
+          type: string
+          description: To indicate where payment instructions (tape and/or bulk paper) are to be exchanged.
+        frenchInstitutionName:
+          type: string
+          description: To identify the French version of the name of the institution.
+        identificationNumber:
+          type: string
+          description: Direct Payment Routing Numbers - To identify the branch of the institution,
+        indirectCreditsAcctNumber:
+          type: string
+          description: This field identifies the Branch Number and Account Number of a Direct Clearer where an Indirect Clearer maintains an account for effecting credit payments.
+        indirectCreditsBranchIDNumber:
+          type: string
+          description: This field identifies the Branch Number and Account Number of a Direct Clearer where an Indirect Clearer maintains an account for effecting credit payments.
+        indirectMICRAcctNumber:
+          type: string
+          description: 'This field identifies the Institution Account Number of a Direct Clearer for the purpose of Magnetic Ink Character Recognition (MICR) encoding debit vouchers that are being drawn on Indirect Clearers.  '
+        indirectMICRBranchIDNumber:
+          type: string
+          description: This field identifies the Institution Branch of a Direct Clearer for the purpose of Magnetic Ink Character Recognition (MICR) encoding debit vouchers that are being drawn on Indirect Clearers.
+        languageCode:
+          type: string
+          description: To identify the working language of the branch.
+        postalAddress:
+          type: string
+          description: To identify the postal address of the branch.
+        postalCode:
+          type: string
+          description: 'To identify the postal code of the branch office.
+
+            The postal code to be entered in this field is the code identified with the postal address. Postal Codes may be obtained from the Directory of Postal Codes Published by Canada Post.'
+        provinceCode:
+          type: string
+          description: To identify the province in which the branch is located.
+        servicabilityCode:
+          type: string
+          description: To indicate the lead time required to deliver credit items on paper from the exchange point designated in the Exchange Point No. to the branch.
+        status:
+          type: string
+          description: Indicates status of a branch, whether opened, closed, or requiring a Cross-Reference.
+        townCity:
+          type: string
+          description: To identify the town or city in which the branch is located.
+      title: MasterRecord
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
