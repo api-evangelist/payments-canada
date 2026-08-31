@@ -224,6 +224,8 @@ apis:
   humanURL: https://developer.payments.ca/rtr-sandbox-api/apis
   baseURL: https://api.payments.ca/rtr-sandbox
   tags:
+  - Report
+  tags_raw:
   - report
   properties:
   - type: OpenAPI
