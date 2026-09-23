@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  description: API to retrieve ccin extract data.  This is the same data previously provided by the weekly extract files from CCIN.
+  description: API to retrieve ccin extract data. This is the same data previously provided by the weekly extract files from CCIN.
   version: '1.0'
   title: CCIN Output Master Extract Resource API
 servers:

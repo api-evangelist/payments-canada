@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  description: Api to retrieve branch extract data.  This is the same data previously provided by the weekly extract files from FIF.
+  description: Api to retrieve branch extract data. This is the same data previously provided by the weekly extract files from FIF.
   version: '1.0'
   title: FIF Output Fif Extracts Resource API
 servers:
@@ -15,7 +15,7 @@ paths:
       - Bearer: []
       tags:
       - fif-extracts-resource
-      summary: Get the master extract. Defaults to last completed cycle unless specific date in 'asAtDate' parameter
+      summary: Get the master extract.
       operationId: getMaster
       parameters:
       - name: asAtDate
@@ -64,7 +64,7 @@ paths:
       - Bearer: []
       tags:
       - fif-extracts-resource
-      summary: Get the updated branches from the extracts for a given asAtDate range between the 'startDate' and 'endDate'
+      summary: Get the updated branches from the extracts for a given asAtDate range between…
       description: The 'startDate' and 'endDate' are optional. When not provided, default values will be used, resulting in updated branches from the latest completed cycle being returned. The range is inclusive, meaning an effective date equal to the 'startDate' or 'endDate' will be included.
       operationId: getUpdate
       parameters:
@@ -111,52 +111,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    UpdatesRecord:
-      type: object
-      properties:
-        branchClassification:
-          $ref: '#/components/schemas/ValueFlag'
-        branchDomicile:
-          $ref: '#/components/schemas/ValueFlag'
-        civicAddress:
-          $ref: '#/components/schemas/ValueFlag'
-        crossReferenceNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        effectiveDate:
-          $ref: '#/components/schemas/ValueFlag'
-        englishInstitutionName:
-          $ref: '#/components/schemas/ValueFlag'
-        exchangePoint:
-          $ref: '#/components/schemas/ValueFlag'
-        frenchInstitutionName:
-          $ref: '#/components/schemas/ValueFlag'
-        identificationNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectCreditsAcctNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectCreditsBranchIDNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectMICRAcctNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectMICRBranchIDNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        languageCode:
-          $ref: '#/components/schemas/ValueFlag'
-        postalAddress:
-          $ref: '#/components/schemas/ValueFlag'
-        postalCode:
-          $ref: '#/components/schemas/ValueFlag'
-        provinceCode:
-          $ref: '#/components/schemas/ValueFlag'
-        servicabilityCode:
-          $ref: '#/components/schemas/ValueFlag'
-        status:
-          $ref: '#/components/schemas/ValueFlag'
-        townCity:
-          $ref: '#/components/schemas/ValueFlag'
-        transactionCode:
-          type: string
-      title: UpdatesRecord
     ValueFlag:
       type: object
       properties:
@@ -231,6 +185,52 @@ components:
           type: string
           description: To identify the town or city in which the branch is located.
       title: MasterRecord
+    UpdatesRecord:
+      type: object
+      properties:
+        branchClassification:
+          $ref: '#/components/schemas/ValueFlag'
+        branchDomicile:
+          $ref: '#/components/schemas/ValueFlag'
+        civicAddress:
+          $ref: '#/components/schemas/ValueFlag'
+        crossReferenceNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        effectiveDate:
+          $ref: '#/components/schemas/ValueFlag'
+        englishInstitutionName:
+          $ref: '#/components/schemas/ValueFlag'
+        exchangePoint:
+          $ref: '#/components/schemas/ValueFlag'
+        frenchInstitutionName:
+          $ref: '#/components/schemas/ValueFlag'
+        identificationNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectCreditsAcctNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectCreditsBranchIDNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectMICRAcctNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectMICRBranchIDNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        languageCode:
+          $ref: '#/components/schemas/ValueFlag'
+        postalAddress:
+          $ref: '#/components/schemas/ValueFlag'
+        postalCode:
+          $ref: '#/components/schemas/ValueFlag'
+        provinceCode:
+          $ref: '#/components/schemas/ValueFlag'
+        servicabilityCode:
+          $ref: '#/components/schemas/ValueFlag'
+        status:
+          $ref: '#/components/schemas/ValueFlag'
+        townCity:
+          $ref: '#/components/schemas/ValueFlag'
+        transactionCode:
+          type: string
+      title: UpdatesRecord
   securitySchemes:
     Bearer:
       type: apiKey

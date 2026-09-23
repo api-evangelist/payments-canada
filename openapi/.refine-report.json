@@ -1,0 +1,57 @@
+{
+  "provider": "payments-canada",
+  "sources": [
+    "_original/ccin-extracts-api-openapi.yml",
+    "_original/ccin-lookup-api-openapi.yml",
+    "_original/fif-branch-api-openapi.yml",
+    "_original/fif-extracts-api-openapi.yml",
+    "_original/rtr-balance-report-api-openapi.yml",
+    "_original/rtr-inbound-csp-heartbeat-api-openapi.yml",
+    "_original/rtr-inbound-participant-payment-api-openapi.yml",
+    "_original/rtr-interest-report-api-openapi.yml"
+  ],
+  "outputs": [
+    "payments-canada-master-extract-resource-api-openapi.yml",
+    "payments-canada-update-extract-resource-api-openapi.yml",
+    "payments-canada-ccin-extract-resource-api-openapi.yml",
+    "payments-canada-fif-branches-resource-api-openapi.yml",
+    "payments-canada-fif-extracts-resource-api-openapi.yml",
+    "payments-canada-report-api-openapi.yml",
+    "payments-canada-application-level-heartbeat-api-openapi.yml",
+    "payments-canada-single-credit-transfer-api-openapi.yml",
+    "payments-canada-single-credit-transfer-status-enquiry-api-openapi.yml",
+    "payments-canada-interest-report-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (8 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ccin-extracts-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "ccin-lookup-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "fif-branch-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "fif-extracts-api-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "rtr-balance-report-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "rtr-balance-report-api-openapi.yml: declared missing tag: report",
+    "rtr-inbound-csp-heartbeat-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "rtr-inbound-csp-heartbeat-api-openapi.yml: declared missing tag: application level heartbeat",
+    "rtr-inbound-participant-payment-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "rtr-inbound-participant-payment-api-openapi.yml: declared missing tag: single credit transfer",
+    "rtr-inbound-participant-payment-api-openapi.yml: declared missing tag: single credit transfer status enquiry",
+    "rtr-interest-report-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "rtr-interest-report-api-openapi.yml: declared missing tag: Interest Report",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "payments-canada-application-level-heartbeat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-ccin-extract-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-fif-branches-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-fif-extracts-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-interest-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-master-extract-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-single-credit-transfer-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-single-credit-transfer-status-enquiry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "payments-canada-update-extract-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

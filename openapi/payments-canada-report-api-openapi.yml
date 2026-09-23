@@ -1,44 +1,18 @@
 openapi: 3.2.0
 info:
   title: Payment Capacity Balance Report API
-  description: 'These APIs calls the C&S system to generate an balance report.
-
-
-    # Pre-requisites:
-
-    1. Create an app with the `rtr-sandbox-product` on the [Developer Portal](https://developer.payments.ca/)
-
-    2. Mark down the `Consumer Key` and `Consumer Secret`
-
-
-    # Calling this API on this page
-
-    1. Click the Authorize button.
-
-    2. Fill in the username with your Consumer Key and fill in the password with your Consumer Secret.
-
-    3. Click Authorize.
-
-    4. Expand the appropraite API and click "Try it out".
-
-    5. Fill in the appropriate details in the body.
-
-    6. Click "Execute"
-
-    7. The server response will be found under the curl call.
-
-    '
+  description: These APIs calls the C&S system to generate an balance report.
   version: 1.1.0
 servers:
 - url: https://api.payments.ca/rtr-sandbox
   description: Sandbox Environment
 tags:
-- name: report
+- name: Report
 paths:
   /payment-capacity-balance-report:
     post:
       tags:
-      - report
+      - Report
       description: This service can be used by the Participants to retrieve the Balance Report. Message format - ISO 20022 camt.003.001.07 with BAH ISO 20022 head.001.001.02
       parameters:
       - $ref: '#/components/parameters/x-jws-signature'
@@ -73,22 +47,12 @@ paths:
           headers:
             traceability-id:
               $ref: '#/components/parameters/traceability-id'
+      summary: Create payment capacity balance report
+      x-summary-source: derived
+      operationId: postPaymentCapacityBalanceReport
+      x-operation-id-source: derived
 components:
   schemas:
-    BusinessApplicationHeaderV02:
-      $ref: iso_models/head_002.yaml#/components/schemas/BusinessApplicationHeaderV02
-    BalanceRequest:
-      type: object
-      properties:
-        get_account:
-          $ref: '#/components/schemas/GetAccountV07'
-        business_application_header:
-          $ref: '#/components/schemas/BusinessApplicationHeaderV02'
-      required:
-      - get_account
-      - business_application_header
-    GetAccountV07:
-      $ref: iso_models/camt_003.yaml#/components/schemas/GetAccountV07
     BalanceResponse:
       type: object
       oneOf:
@@ -111,8 +75,22 @@ components:
       - business_application_header
     MessageReject:
       $ref: iso_models/admi_002.yaml#/components/schemas/MessageReject
+    BalanceRequest:
+      type: object
+      properties:
+        get_account:
+          $ref: '#/components/schemas/GetAccountV07'
+        business_application_header:
+          $ref: '#/components/schemas/BusinessApplicationHeaderV02'
+      required:
+      - get_account
+      - business_application_header
+    GetAccountV07:
+      $ref: iso_models/camt_003.yaml#/components/schemas/GetAccountV07
     ReturnAccountV08:
       $ref: iso_models/camt_004.yaml#/components/schemas/ReturnAccountV08
+    BusinessApplicationHeaderV02:
+      $ref: iso_models/head_002.yaml#/components/schemas/BusinessApplicationHeaderV02
   parameters:
     x-jws-signature:
       in: header

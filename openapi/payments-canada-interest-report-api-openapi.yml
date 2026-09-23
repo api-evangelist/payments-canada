@@ -1,33 +1,7 @@
 openapi: 3.2.0
 info:
   title: Interest Report API
-  description: 'These APIs calls the C&S system to generate an interest report.
-
-
-    # Pre-requisites:
-
-    1. Create an app with the `rtr-sandbox-product` on the [Developer Portal](https://developer.payments.ca/)
-
-    2. Mark down the `Consumer Key` and `Consumer Secret`
-
-
-    # Calling this API on this page
-
-    1. Click the Authorize button.
-
-    2. Fill in the username with your Consumer Key and fill in the password with your Consumer Secret.
-
-    3. Click Authorize.
-
-    4. Expand the appropraite API and click "Try it out".
-
-    5. Fill in the appropriate details in the body.
-
-    6. Click "Execute"
-
-    7. The server response will be found under the curl call.
-
-    '
+  description: These APIs calls the C&S system to generate an interest report.
   version: 1.1.0
 servers:
 - url: https://api.payments.ca/rtr-sandbox
@@ -73,8 +47,28 @@ paths:
           headers:
             traceability-id:
               $ref: '#/components/parameters/traceability-id'
+      summary: Create interest report
+      x-summary-source: derived
+      operationId: postInterestReport
+      x-operation-id-source: derived
 components:
   schemas:
+    InterestRequest:
+      type: object
+      properties:
+        get_account:
+          $ref: '#/components/schemas/GetAccountV07'
+        business_application_header:
+          $ref: '#/components/schemas/BusinessApplicationHeaderV02'
+      required:
+      - get_account
+      - business_application_header
+    MessageReject:
+      $ref: iso_models/admi_002.yaml#/components/schemas/MessageReject
+    GetAccountV07:
+      $ref: iso_models/camt_003.yaml#/components/schemas/GetAccountV07
+    ReturnAccountV08:
+      $ref: iso_models/camt_004.yaml#/components/schemas/ReturnAccountV08
     InterestResponse:
       type: object
       oneOf:
@@ -97,22 +91,6 @@ components:
       - business_application_header
     BusinessApplicationHeaderV02:
       $ref: iso_models/head_002.yaml#/components/schemas/BusinessApplicationHeaderV02
-    GetAccountV07:
-      $ref: iso_models/camt_003.yaml#/components/schemas/GetAccountV07
-    MessageReject:
-      $ref: iso_models/admi_002.yaml#/components/schemas/MessageReject
-    ReturnAccountV08:
-      $ref: iso_models/camt_004.yaml#/components/schemas/ReturnAccountV08
-    InterestRequest:
-      type: object
-      properties:
-        get_account:
-          $ref: '#/components/schemas/GetAccountV07'
-        business_application_header:
-          $ref: '#/components/schemas/BusinessApplicationHeaderV02'
-      required:
-      - get_account
-      - business_application_header
   parameters:
     x-jws-signature:
       in: header

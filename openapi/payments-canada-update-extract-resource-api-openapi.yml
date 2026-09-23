@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  description: API to retrieve ccin extract data.  This is the same data previously provided by the weekly extract files from CCIN.
+  description: API to retrieve ccin extract data. This is the same data previously provided by the weekly extract files from CCIN.
   version: '1.0'
   title: CCIN Output Update Extract Resource API
 servers:
@@ -75,16 +75,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Value_Changed:
-      type: object
-      properties:
-        changed:
-          type: boolean
-          description: Determines if the field value was changed
-        value:
-          type: object
-          description: The object that may have been, typically a string
-      title: Value changed
     Update_Extract_Record:
       type: object
       properties:
@@ -132,3 +122,13 @@ components:
         statusDate:
           $ref: '#/components/schemas/Value_Changed'
       title: Update Extract Record
+    Value_Changed:
+      type: object
+      properties:
+        changed:
+          type: boolean
+          description: Determines if the field value was changed
+        value:
+          type: object
+          description: The object that may have been, typically a string
+      title: Value changed

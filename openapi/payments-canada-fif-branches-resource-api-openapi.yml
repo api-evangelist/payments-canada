@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  description: Api to retrieve branch extract data.  This is the same data previously provided by the weekly extract files from FIF.
+  description: Api to retrieve branch extract data. This is the same data previously provided by the weekly extract files from FIF.
   version: '1.0'
   title: FIF Output Fif Branches Resource API
 servers:
@@ -15,7 +15,7 @@ paths:
       - Bearer: []
       tags:
       - fif-branches-resource
-      summary: Get branch details by DPRN from a given asAtDate - if no date is provided, latest completed cycle is used.
+      summary: Get branch details by DPRN from a given asAtDate - if no date is provided…
       operationId: getBranchById
       parameters:
       - name: asAtDate
