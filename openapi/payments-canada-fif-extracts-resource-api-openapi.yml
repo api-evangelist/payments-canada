@@ -111,14 +111,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    ValueFlag:
-      type: object
-      properties:
-        changed:
-          type: boolean
-        value:
-          type: string
-      title: ValueFlag
     MasterRecord:
       type: object
       properties:
@@ -231,6 +223,14 @@ components:
         transactionCode:
           type: string
       title: UpdatesRecord
+    ValueFlag:
+      type: object
+      properties:
+        changed:
+          type: boolean
+        value:
+          type: string
+      title: ValueFlag
   securitySchemes:
     Bearer:
       type: apiKey

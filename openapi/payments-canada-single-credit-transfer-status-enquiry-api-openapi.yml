@@ -54,33 +54,85 @@ paths:
       operationId: postPaymentsStatus
       x-operation-id-source: derived
 components:
+  schemas:
+    PacsResponse:
+      allOf:
+      - $ref: '#/components/schemas/IsoHeader'
+      - oneOf:
+        - $ref: '#/components/schemas/SyntaxError'
+        - $ref: '#/components/schemas/PaymentStatusReport'
+    SendStatusEnquiry:
+      description: pacs.028 message wrapper
+      allOf:
+      - $ref: '#/components/schemas/IsoHeader'
+      - type: object
+        required:
+        - fi_to_fi_payment_status_request
+        properties:
+          fi_to_fi_payment_status_request:
+            $ref: FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request
+    PaymentStatusReport:
+      description: 'pacs.002 message wrapper - There are 2 possible scenarios of pacs.002 response:  1. Validation or Business Error - Transaction Status is RJCT,  2. Successful response - Transaction Status is not RJCT
+
+        '
+      type: object
+      required:
+      - fi_to_fi_payment_status_report
+      properties:
+        fi_to_fi_payment_status_report:
+          $ref: FIToFIPaymentStatusReportV10.yaml#/definitions/fi_to_fi_payment_status_report
+    IsoHeader:
+      type: object
+      required:
+      - business_application_header
+      properties:
+        business_application_header:
+          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
+    SyntaxError:
+      description: 'admi.002 message wrapper for syntax errors in API request payload.
+
+        '
+      type: object
+      required:
+      - message_reject
+      properties:
+        message_reject:
+          $ref: MessageRejectV01.yaml#/definitions/message_reject
+  headers:
+    x-jws-signature:
+      description: The JWS signature of response payload.
+      schema:
+        type: string
+        minLength: 1
+      required: true
+      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
   responses:
-    404-not-found:
-      description: Resources Not Found
     403-forbidden:
       description: Forbidden
       content:
         application/vnd.api.v1+json:
           schema:
             $ref: types.yaml#/ErrorModel
+    503-service-unavailable:
+      description: Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.
     500-internal-server-error:
       description: Internal Server Error
       content:
         application/vnd.api.v1+json:
           schema:
             $ref: types.yaml#/ErrorModel
+    401-unauthorized:
+      description: Unauthorized
+    429-too-many-requests:
+      description: Too many requests; blocked due to rate limiting.
     400-bad-request:
       description: Bad Request - Validation Errors
       content:
         application/vnd.api.v1+json:
           schema:
             $ref: types.yaml#/ErrorModel
-    503-service-unavailable:
-      description: Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.
-    401-unauthorized:
-      description: Unauthorized
-    429-too-many-requests:
-      description: Too many requests; blocked due to rate limiting.
+    404-not-found:
+      description: Resources Not Found
   parameters:
     Signature:
       in: header
@@ -110,58 +162,6 @@ components:
         maxLength: 36
       required: false
       example: eb6305c9-1f7f-49de-aed0-16487c27b42d
-  schemas:
-    IsoHeader:
-      type: object
-      required:
-      - business_application_header
-      properties:
-        business_application_header:
-          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
-    SendStatusEnquiry:
-      description: pacs.028 message wrapper
-      allOf:
-      - $ref: '#/components/schemas/IsoHeader'
-      - type: object
-        required:
-        - fi_to_fi_payment_status_request
-        properties:
-          fi_to_fi_payment_status_request:
-            $ref: FIToFIPaymentStatusRequestV03.yaml#/definitions/fi_to_fi_payment_status_request
-    SyntaxError:
-      description: 'admi.002 message wrapper for syntax errors in API request payload.
-
-        '
-      type: object
-      required:
-      - message_reject
-      properties:
-        message_reject:
-          $ref: MessageRejectV01.yaml#/definitions/message_reject
-    PacsResponse:
-      allOf:
-      - $ref: '#/components/schemas/IsoHeader'
-      - oneOf:
-        - $ref: '#/components/schemas/SyntaxError'
-        - $ref: '#/components/schemas/PaymentStatusReport'
-    PaymentStatusReport:
-      description: 'pacs.002 message wrapper - There are 2 possible scenarios of pacs.002 response:  1. Validation or Business Error - Transaction Status is RJCT,  2. Successful response - Transaction Status is not RJCT
-
-        '
-      type: object
-      required:
-      - fi_to_fi_payment_status_report
-      properties:
-        fi_to_fi_payment_status_report:
-          $ref: FIToFIPaymentStatusReportV10.yaml#/definitions/fi_to_fi_payment_status_report
-  headers:
-    x-jws-signature:
-      description: The JWS signature of response payload.
-      schema:
-        type: string
-        minLength: 1
-      required: true
-      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
   securitySchemes:
     oAuth:
       type: oauth2

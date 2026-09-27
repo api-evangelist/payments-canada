@@ -54,23 +54,59 @@ paths:
       operationId: postPayments
       x-operation-id-source: derived
 components:
+  schemas:
+    PacsResponse:
+      allOf:
+      - $ref: '#/components/schemas/IsoHeader'
+      - oneOf:
+        - $ref: '#/components/schemas/SyntaxError'
+        - $ref: '#/components/schemas/PaymentStatusReport'
+    IsoHeader:
+      type: object
+      required:
+      - business_application_header
+      properties:
+        business_application_header:
+          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
+    PaymentStatusReport:
+      description: 'pacs.002 message wrapper - There are 2 possible scenarios of pacs.002 response:  1. Validation or Business Error - Transaction Status is RJCT,  2. Successful response - Transaction Status is not RJCT
+
+        '
+      type: object
+      required:
+      - fi_to_fi_payment_status_report
+      properties:
+        fi_to_fi_payment_status_report:
+          $ref: FIToFIPaymentStatusReportV10.yaml#/definitions/fi_to_fi_payment_status_report
+    SyntaxError:
+      description: 'admi.002 message wrapper for syntax errors in API request payload.
+
+        '
+      type: object
+      required:
+      - message_reject
+      properties:
+        message_reject:
+          $ref: MessageRejectV01.yaml#/definitions/message_reject
+    SendPayment:
+      description: pacs.008 message wrapper
+      allOf:
+      - $ref: '#/components/schemas/IsoHeader'
+      - type: object
+        required:
+        - fi_to_fi_customer_credit_transfer
+        properties:
+          fi_to_fi_customer_credit_transfer:
+            $ref: FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer
   responses:
-    404-not-found:
-      description: Resources Not Found
-    403-forbidden:
-      description: Forbidden
-      content:
-        application/vnd.api.v1+json:
-          schema:
-            $ref: types.yaml#/ErrorModel
     500-internal-server-error:
       description: Internal Server Error
       content:
         application/vnd.api.v1+json:
           schema:
             $ref: types.yaml#/ErrorModel
-    400-bad-request:
-      description: Bad Request - Validation Errors
+    403-forbidden:
+      description: Forbidden
       content:
         application/vnd.api.v1+json:
           schema:
@@ -81,6 +117,22 @@ components:
       description: Unauthorized
     429-too-many-requests:
       description: Too many requests; blocked due to rate limiting.
+    400-bad-request:
+      description: Bad Request - Validation Errors
+      content:
+        application/vnd.api.v1+json:
+          schema:
+            $ref: types.yaml#/ErrorModel
+    404-not-found:
+      description: Resources Not Found
+  headers:
+    x-jws-signature:
+      description: The JWS signature of response payload.
+      schema:
+        type: string
+        minLength: 1
+      required: true
+      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
   parameters:
     Signature:
       in: header
@@ -110,58 +162,6 @@ components:
         maxLength: 36
       required: false
       example: eb6305c9-1f7f-49de-aed0-16487c27b42d
-  schemas:
-    IsoHeader:
-      type: object
-      required:
-      - business_application_header
-      properties:
-        business_application_header:
-          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
-    SendPayment:
-      description: pacs.008 message wrapper
-      allOf:
-      - $ref: '#/components/schemas/IsoHeader'
-      - type: object
-        required:
-        - fi_to_fi_customer_credit_transfer
-        properties:
-          fi_to_fi_customer_credit_transfer:
-            $ref: FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer
-    SyntaxError:
-      description: 'admi.002 message wrapper for syntax errors in API request payload.
-
-        '
-      type: object
-      required:
-      - message_reject
-      properties:
-        message_reject:
-          $ref: MessageRejectV01.yaml#/definitions/message_reject
-    PacsResponse:
-      allOf:
-      - $ref: '#/components/schemas/IsoHeader'
-      - oneOf:
-        - $ref: '#/components/schemas/SyntaxError'
-        - $ref: '#/components/schemas/PaymentStatusReport'
-    PaymentStatusReport:
-      description: 'pacs.002 message wrapper - There are 2 possible scenarios of pacs.002 response:  1. Validation or Business Error - Transaction Status is RJCT,  2. Successful response - Transaction Status is not RJCT
-
-        '
-      type: object
-      required:
-      - fi_to_fi_payment_status_report
-      properties:
-        fi_to_fi_payment_status_report:
-          $ref: FIToFIPaymentStatusReportV10.yaml#/definitions/fi_to_fi_payment_status_report
-  headers:
-    x-jws-signature:
-      description: The JWS signature of response payload.
-      schema:
-        type: string
-        minLength: 1
-      required: true
-      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
   securitySchemes:
     oAuth:
       type: oauth2
