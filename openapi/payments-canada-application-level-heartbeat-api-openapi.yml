@@ -57,30 +57,6 @@ paths:
       x-operation-id-source: derived
 components:
   responses:
-    500-internal-server-error:
-      description: Internal Server Error
-      headers:
-        traceability-id:
-          $ref: '#/components/parameters/TraceabilityId'
-      content:
-        application/vnd.api.v1+json:
-          schema:
-            $ref: types.yaml#/ErrorModel
-    403-forbidden:
-      description: Forbidden
-      content:
-        application/vnd.api.v1+json:
-          schema:
-            $ref: types.yaml#/ErrorModel
-    503-service-unavailable:
-      description: Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.
-    401-unauthorized:
-      description: Unauthorized
-      headers:
-        traceability-id:
-          $ref: '#/components/parameters/TraceabilityId'
-    429-too-many-requests:
-      description: Too many requests; blocked due to rate limiting.
     400-bad-request:
       description: Bad Request - Validation Errors
       headers:
@@ -90,30 +66,33 @@ components:
         application/vnd.api.v1+json:
           schema:
             $ref: types.yaml#/ErrorModel
+    401-unauthorized:
+      description: Unauthorized
+      headers:
+        traceability-id:
+          $ref: '#/components/parameters/TraceabilityId'
+    403-forbidden:
+      description: Forbidden
+      content:
+        application/vnd.api.v1+json:
+          schema:
+            $ref: types.yaml#/ErrorModel
+    429-too-many-requests:
+      description: Too many requests; blocked due to rate limiting.
     404-not-found:
       description: Resources Not Found
-  headers:
-    x-jws-signature:
-      description: The JWS signature of response payload.
-      schema:
-        type: string
-        minLength: 1
-      required: true
-      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
+    503-service-unavailable:
+      description: Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.
+    500-internal-server-error:
+      description: Internal Server Error
+      headers:
+        traceability-id:
+          $ref: '#/components/parameters/TraceabilityId'
+      content:
+        application/vnd.api.v1+json:
+          schema:
+            $ref: types.yaml#/ErrorModel
   schemas:
-    IsoHeader:
-      type: object
-      required:
-      - business_application_header
-      properties:
-        business_application_header:
-          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
-    AdmiResponse:
-      allOf:
-      - $ref: '#/components/schemas/IsoHeader'
-      - oneOf:
-        - $ref: '#/components/schemas/SyntaxError'
-        - $ref: '#/components/schemas/HeartbeatResponse'
     HeartbeatResponse:
       description: admi.011 message wrapper
       type: object
@@ -122,6 +101,12 @@ components:
       properties:
         system_event_acknowledgement:
           $ref: SystemEventAcknowledgementV01.yaml#/definitions/system_event_acknowledgement
+    AdmiResponse:
+      allOf:
+      - $ref: '#/components/schemas/IsoHeader'
+      - oneOf:
+        - $ref: '#/components/schemas/SyntaxError'
+        - $ref: '#/components/schemas/HeartbeatResponse'
     ReceiveHeartbeat:
       description: admi.004 message wrapper
       allOf:
@@ -140,6 +125,21 @@ components:
       properties:
         message_reject:
           $ref: MessageRejectV01.yaml#/definitions/message_reject
+    IsoHeader:
+      type: object
+      required:
+      - business_application_header
+      properties:
+        business_application_header:
+          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
+  headers:
+    x-jws-signature:
+      description: The JWS signature of response payload.
+      schema:
+        type: string
+        minLength: 1
+      required: true
+      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
   parameters:
     TraceabilityId:
       description: A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.
