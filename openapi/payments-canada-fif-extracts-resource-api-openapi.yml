@@ -119,6 +119,52 @@ components:
         value:
           type: string
       title: ValueFlag
+    UpdatesRecord:
+      type: object
+      properties:
+        branchClassification:
+          $ref: '#/components/schemas/ValueFlag'
+        branchDomicile:
+          $ref: '#/components/schemas/ValueFlag'
+        civicAddress:
+          $ref: '#/components/schemas/ValueFlag'
+        crossReferenceNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        effectiveDate:
+          $ref: '#/components/schemas/ValueFlag'
+        englishInstitutionName:
+          $ref: '#/components/schemas/ValueFlag'
+        exchangePoint:
+          $ref: '#/components/schemas/ValueFlag'
+        frenchInstitutionName:
+          $ref: '#/components/schemas/ValueFlag'
+        identificationNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectCreditsAcctNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectCreditsBranchIDNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectMICRAcctNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        indirectMICRBranchIDNumber:
+          $ref: '#/components/schemas/ValueFlag'
+        languageCode:
+          $ref: '#/components/schemas/ValueFlag'
+        postalAddress:
+          $ref: '#/components/schemas/ValueFlag'
+        postalCode:
+          $ref: '#/components/schemas/ValueFlag'
+        provinceCode:
+          $ref: '#/components/schemas/ValueFlag'
+        servicabilityCode:
+          $ref: '#/components/schemas/ValueFlag'
+        status:
+          $ref: '#/components/schemas/ValueFlag'
+        townCity:
+          $ref: '#/components/schemas/ValueFlag'
+        transactionCode:
+          type: string
+      title: UpdatesRecord
     MasterRecord:
       type: object
       properties:
@@ -185,52 +231,6 @@ components:
           type: string
           description: To identify the town or city in which the branch is located.
       title: MasterRecord
-    UpdatesRecord:
-      type: object
-      properties:
-        branchClassification:
-          $ref: '#/components/schemas/ValueFlag'
-        branchDomicile:
-          $ref: '#/components/schemas/ValueFlag'
-        civicAddress:
-          $ref: '#/components/schemas/ValueFlag'
-        crossReferenceNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        effectiveDate:
-          $ref: '#/components/schemas/ValueFlag'
-        englishInstitutionName:
-          $ref: '#/components/schemas/ValueFlag'
-        exchangePoint:
-          $ref: '#/components/schemas/ValueFlag'
-        frenchInstitutionName:
-          $ref: '#/components/schemas/ValueFlag'
-        identificationNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectCreditsAcctNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectCreditsBranchIDNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectMICRAcctNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        indirectMICRBranchIDNumber:
-          $ref: '#/components/schemas/ValueFlag'
-        languageCode:
-          $ref: '#/components/schemas/ValueFlag'
-        postalAddress:
-          $ref: '#/components/schemas/ValueFlag'
-        postalCode:
-          $ref: '#/components/schemas/ValueFlag'
-        provinceCode:
-          $ref: '#/components/schemas/ValueFlag'
-        servicabilityCode:
-          $ref: '#/components/schemas/ValueFlag'
-        status:
-          $ref: '#/components/schemas/ValueFlag'
-        townCity:
-          $ref: '#/components/schemas/ValueFlag'
-        transactionCode:
-          type: string
-      title: UpdatesRecord
   securitySchemes:
     Bearer:
       type: apiKey

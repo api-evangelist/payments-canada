@@ -52,11 +52,28 @@ paths:
       operationId: postInterestReport
       x-operation-id-source: derived
 components:
+  parameters:
+    traceability-id:
+      in: header
+      name: traceability-id
+      description: Unique Id that can be used to trace the request.
+      schema:
+        type: string
+        format: uuid
+        example: 93334d98-e1d0-4158-a1f7-302b22af4f6d
+      required: true
+    x-jws-signature:
+      in: header
+      name: x-jws-signature
+      description: JSON Web Signature (JWS) of the payload
+      schema:
+        type: string
+        minLength: 1
+        example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
+      required: true
   schemas:
     MessageReject:
       $ref: iso_models/admi_002.yaml#/components/schemas/MessageReject
-    GetAccountV07:
-      $ref: iso_models/camt_003.yaml#/components/schemas/GetAccountV07
     InterestResponse:
       type: object
       oneOf:
@@ -77,8 +94,12 @@ components:
           $ref: '#/components/schemas/BusinessApplicationHeaderV02'
       required:
       - business_application_header
+    GetAccountV07:
+      $ref: iso_models/camt_003.yaml#/components/schemas/GetAccountV07
     ReturnAccountV08:
       $ref: iso_models/camt_004.yaml#/components/schemas/ReturnAccountV08
+    BusinessApplicationHeaderV02:
+      $ref: iso_models/head_002.yaml#/components/schemas/BusinessApplicationHeaderV02
     InterestRequest:
       type: object
       properties:
@@ -89,27 +110,6 @@ components:
       required:
       - get_account
       - business_application_header
-    BusinessApplicationHeaderV02:
-      $ref: iso_models/head_002.yaml#/components/schemas/BusinessApplicationHeaderV02
-  parameters:
-    x-jws-signature:
-      in: header
-      name: x-jws-signature
-      description: JSON Web Signature (JWS) of the payload
-      schema:
-        type: string
-        minLength: 1
-        example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
-      required: true
-    traceability-id:
-      in: header
-      name: traceability-id
-      description: Unique Id that can be used to trace the request.
-      schema:
-        type: string
-        format: uuid
-        example: 93334d98-e1d0-4158-a1f7-302b22af4f6d
-      required: true
   securitySchemes:
     oAuth:
       type: oauth2
