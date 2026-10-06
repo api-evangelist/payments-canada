@@ -70,7 +70,7 @@ tags_raw:
 - Faster Payments
 - Financial-Services
 created: '2026-07-23'
-modified: '2026-07-23'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: payments-canada:lynx-sandbox-api
@@ -327,6 +327,8 @@ apis:
   - type: Documentation
     url: https://developer.payments.ca/ccin-lookup-api/apis
 common:
+- url: https://www.payments.ca/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/payments-canada-capability-edges.yml
   name: Payments Canada Business Capability Map
