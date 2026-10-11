@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/payments-canada/integrations
+- https://n8n.io/integrations/payments-canada/
+- https://composio.dev/toolkits/payments-canada
+- https://monid.ai/tools/payments-canada
+checked:
+- https://composio.dev/toolkits/payments-canada
+- https://monid.ai/tools/payments-canada
+- https://n8n.io/integrations/payments-canada/
+- https://zapier.com/apps/payments-canada/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
