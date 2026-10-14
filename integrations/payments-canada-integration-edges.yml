@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/payments-canada/integrations
 - https://n8n.io/integrations/payments-canada/
@@ -9,8 +9,33 @@ checked:
 - https://composio.dev/toolkits/payments-canada
 - https://monid.ai/tools/payments-canada
 - https://n8n.io/integrations/payments-canada/
+- https://registry.financialdataexchange.org/
 - https://zapier.com/apps/payments-canada/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: FDX (Financial Data Exchange)
+  partner: fdx
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.financialdataexchange.org/
+  contract_reference:
+    register: FDX Registry
+    standard: FDX API
+    spec_file: null
+    register_api: https://registry.financialdataexchange.org/fdxregistryapi/organizations/search/listingTags
+    role: industry-group
+    member_type: MEMBER
+    registered_name: Payments Canada
+    register_id: 244
+    registered_website: https://www.payments.ca/
+    country: Canada
+    fdx_version: null
+    matched_by: domain:payments.ca
+    detected_by: sweep-fdx.py
+    detected: '2026-10-14'
+  detected_by: sweep-fdx.py
+  first_seen: '2026-10-14'
 templates: []
