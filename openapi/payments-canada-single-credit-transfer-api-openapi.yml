@@ -54,34 +54,24 @@ paths:
       operationId: postPayments
       x-operation-id-source: derived
 components:
-  responses:
-    403-forbidden:
-      description: Forbidden
-      content:
-        application/vnd.api.v1+json:
-          schema:
-            $ref: types.yaml#/ErrorModel
-    401-unauthorized:
-      description: Unauthorized
-    500-internal-server-error:
-      description: Internal Server Error
-      content:
-        application/vnd.api.v1+json:
-          schema:
-            $ref: types.yaml#/ErrorModel
-    503-service-unavailable:
-      description: Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.
-    429-too-many-requests:
-      description: Too many requests; blocked due to rate limiting.
-    400-bad-request:
-      description: Bad Request - Validation Errors
-      content:
-        application/vnd.api.v1+json:
-          schema:
-            $ref: types.yaml#/ErrorModel
-    404-not-found:
-      description: Resources Not Found
   schemas:
+    SendPayment:
+      description: pacs.008 message wrapper
+      allOf:
+      - $ref: '#/components/schemas/IsoHeader'
+      - type: object
+        required:
+        - fi_to_fi_customer_credit_transfer
+        properties:
+          fi_to_fi_customer_credit_transfer:
+            $ref: FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer
+    IsoHeader:
+      type: object
+      required:
+      - business_application_header
+      properties:
+        business_application_header:
+          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
     SyntaxError:
       description: 'admi.002 message wrapper for syntax errors in API request payload.
 
@@ -108,33 +98,43 @@ components:
       - oneOf:
         - $ref: '#/components/schemas/SyntaxError'
         - $ref: '#/components/schemas/PaymentStatusReport'
-    IsoHeader:
-      type: object
-      required:
-      - business_application_header
-      properties:
-        business_application_header:
-          $ref: BusinessApplicationHeaderV02.yaml#/definitions/business_application_header
-    SendPayment:
-      description: pacs.008 message wrapper
-      allOf:
-      - $ref: '#/components/schemas/IsoHeader'
-      - type: object
-        required:
-        - fi_to_fi_customer_credit_transfer
-        properties:
-          fi_to_fi_customer_credit_transfer:
-            $ref: FIToFICustomerCreditTransferIncomingV08.yaml#/definitions/fi_to_fi_customer_credit_transfer
+  responses:
+    400-bad-request:
+      description: Bad Request - Validation Errors
+      content:
+        application/vnd.api.v1+json:
+          schema:
+            $ref: types.yaml#/ErrorModel
+    429-too-many-requests:
+      description: Too many requests; blocked due to rate limiting.
+    503-service-unavailable:
+      description: Service Unavailable - The server cannot handle the request for a service due to temporary maintenance.
+    404-not-found:
+      description: Resources Not Found
+    500-internal-server-error:
+      description: Internal Server Error
+      content:
+        application/vnd.api.v1+json:
+          schema:
+            $ref: types.yaml#/ErrorModel
+    401-unauthorized:
+      description: Unauthorized
+    403-forbidden:
+      description: Forbidden
+      content:
+        application/vnd.api.v1+json:
+          schema:
+            $ref: types.yaml#/ErrorModel
   parameters:
-    TraceabilityId:
-      description: A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.
+    Signature:
       in: header
-      name: traceability-id
+      name: x-jws-signature
+      description: The JWS signature of request payload.
       schema:
         type: string
-        format: uuid
+        minLength: 1
       required: true
-      example: e23d32eb-c7f2-4836-a314-557efe95a525
+      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
     RequestId:
       in: header
       name: x-uetr
@@ -145,15 +145,15 @@ components:
         maxLength: 36
       required: false
       example: eb6305c9-1f7f-49de-aed0-16487c27b42d
-    Signature:
+    TraceabilityId:
+      description: A unique identifier per RTR Exchange API call for purpose of tracing a request through all systems. For example, traceability-id must be UUID. All the messages sent to other systems will have the same traceability-id as the message that originated them.
       in: header
-      name: x-jws-signature
-      description: The JWS signature of request payload.
+      name: traceability-id
       schema:
         type: string
-        minLength: 1
+        format: uuid
       required: true
-      example: eyJjcml0IjpbImlhdCJdLCJpYXQiOjE2MzcyNzIxMzUyNTIsImFsZyI6IlJTMjU2Iiwia2lkIjoic2lnbi1rZXktY2EwMDAwMDEtMDAxIn0.V7skMzl3rUZK7N5pYVlicNt3TWXNBZyX-rtNV7n5rOc.hBDcIL9ptXWfOsg2pRSTy5dzFsowqjvE0G8dglODTSFpRM-iL1khjomuaYx_LnZV_lTnwkfMHknLdJuG5ucM7gpTZ98a1egjTcQisWHRO0fCr-sxqZXusGIB-hgAnB16Fn9UtdNdzsl447C0c3sSmytYn6eeMu5c6RWVrq-xB5KD9_JGexpyTw3IBvXavpd7h7QgnNzmcdWjV0yVXh74x4gmD8hTSbRkv54MYzap2BSFXLgxCwOrS7Jw0tQzCcP8a7gcOunO9Zr3ArgH-4Ur0VRWxIH4GaDksCBKdx1JdXFUToqG5Ben-FNyAzxkVxtuuwYMCbT1I3-8mCoj7nTtYw
+      example: e23d32eb-c7f2-4836-a314-557efe95a525
   headers:
     x-jws-signature:
       description: The JWS signature of response payload.
