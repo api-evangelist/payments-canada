@@ -1,4 +1,4 @@
-# Payments Canada (payments-canada)
+# Payments Canada
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,109 +64,147 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Payments Canada (formerly the Canadian Payments Association) is the public-purpose organization created by federal statute (the Canadian Payments Act) that owns and operates Canada's core national payment clearing and settlement infrastructure, under the oversight of the Bank of Canada and the Minister of Finance. It operates Lynx (the high-value, ISO 20022 real-time gross settlement system), the Automated Clearing Settlement System (ACSS, Canada's retail batch/ACH rail), and is building the Real-Time Rail (RTR) — a 24/7/365 irrevocable faster-payments system fully based on the ISO 20022 messaging standard.
+Payments Canada (formerly the Canadian Payments Association) is the public-purpose organization created by federal statute (the Canadian Payments Act) that owns and operates Canada's core national payment clearing and settlement infrastructure, under the oversight of the Bank of Canada and the Minister of Finance. Its members are Canada's financial institutions. It operates Lynx (the high-value, ISO 20022 real-time gross settlement system that replaced LVTS), the Automated Clearing Settlement System (ACSS, Canada's retail batch/ACH rail), and is building the Real-Time Rail (RTR) — a 24/7/365 irrevocable faster-payments system fully based on the ISO 20022 messaging standard. Payments Canada is payments infrastructure, distinct from Canada's Consumer-Driven Banking (open banking) framework, which is legislated but not yet operational and overseen by the FCAC. It runs a real, publicly registerable API developer portal (developer.payments.ca, launched February 19, 2020) exposing member/registered-user sandbox and data-extract APIs — including downloadable RTR sandbox OpenAPI specifications — secured with OAuth2 client-credentials (Consumer Key/Secret via Apigee); production access is license/agreement gated.
 
-Payments Canada is payments infrastructure, distinct from Canada's Consumer-Driven Banking (open banking) framework, which is legislated but not yet operational and is overseen by the Financial Consumer Agency of Canada (FCAC). Payments Canada runs a real, publicly registerable API developer portal at [developer.payments.ca](https://developer.payments.ca/) (launched February 19, 2020) exposing member/registered-user sandbox and data-extract APIs — including downloadable RTR sandbox OpenAPI specifications — secured with OAuth2 client-credentials (Consumer Key/Secret via Apigee). Production access is license/agreement gated.
+**Areas:** Financial Services · Payments · Canada · Payment Infrastructure · Clearing and Settlement · Real-Time Rail · ISO 20022 · Lynx · Crown Corporation · Faster Payments
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/payments-canada/refs/heads/main/apis.yml)
+## Payments Canada on APIs.io
 
-## Tags
+Everything profiled for Payments Canada is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/payments-canada/](https://apis.io/providers/payments-canada/)** — or go straight to one of the APIs or properties below.
 
-- Financial Services
-- Payments
-- Canada
-- Payment Infrastructure
-- Clearing and Settlement
-- Real-Time Rail
-- ISO 20022
-- Lynx
-- Crown Corporation
-- Faster Payments
+### APIs (12)
 
-## Timestamps
+- [Lynx Sandbox API](https://apis.io/apis/payments-canada/lynx-sandbox-api/) — Sandbox APIs giving members access to test-data interactions with Lynx, Canada's high-value ISO 20022 real-time gross settlement system. Access is…
+- [ACSS API](https://apis.io/apis/payments-canada/acss-api/) — APIs for the Automated Clearing Settlement System (ACSS), Canada's retail batch/ACH clearing rail. Access is member-gated via the developer portal.
+- [Payments Canada application level heartbeat API](https://apis.io/apis/payments-canada/payments-canada-application-level-heartbeat-api/) — The application level heartbeat API from Payments Canada — 1 operation(s) for application level heartbeat.
+- [Payments Canada Ccin Extract Resource API](https://apis.io/apis/payments-canada/payments-canada-ccin-extract-resource-api/) — Ccin Extract Resource
+- [Payments Canada Fif Branches Resource API](https://apis.io/apis/payments-canada/payments-canada-fif-branches-resource-api/) — Fif Branches Resource
+- [Payments Canada Fif Extracts Resource API](https://apis.io/apis/payments-canada/payments-canada-fif-extracts-resource-api/) — Fif Extracts Resource
+- [Payments Canada Interest Report API](https://apis.io/apis/payments-canada/payments-canada-interest-report-api/) — The Interest Report API from Payments Canada — 1 operation(s) for interest report.
+- [Payments Canada Master Extract Resource API](https://apis.io/apis/payments-canada/payments-canada-master-extract-resource-api/) — Master Extract Resource
+- [Payments Canada Report API](https://apis.io/apis/payments-canada/payments-canada-report-api/) — The report API from Payments Canada — 1 operation(s) for report.
+- [Payments Canada single credit transfer API](https://apis.io/apis/payments-canada/payments-canada-single-credit-transfer-api/) — The single credit transfer API from Payments Canada — 1 operation(s) for single credit transfer.
+- [Payments Canada single credit transfer status enquiry API](https://apis.io/apis/payments-canada/payments-canada-single-credit-transfer-status-enquiry-api/) — The single credit transfer status enquiry API from Payments Canada — 1 operation(s) for single credit transfer status enquiry.
+- [Payments Canada Update Extract Resource API](https://apis.io/apis/payments-canada/payments-canada-update-extract-resource-api/) — Update Extract Resource
 
-- **Created:** 2026-07-23
-- **Modified:** 2026-07-23
+### Published properties
 
-## Open-Finance / API Posture
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **First-party developer portal:** Yes — [developer.payments.ca](https://developer.payments.ca/), live (HTTP 200), publicly registerable.
-- **Downloadable specs:** Yes — four RTR sandbox OpenAPI 3.0.3 documents harvested verbatim (see `openapi/`).
-- **Auth model:** OAuth2 client-credentials (Consumer Key / Consumer Secret) issued per registered app via Apigee.
-- **Rails posture:** Operator of Lynx (RTGS, ISO 20022), ACSS (retail/ACH), and the in-progress Real-Time Rail (RTR, ISO 20022). This is the shared Canadian payments rail, not a consumer bank.
-- **Consumer-Driven Banking (open banking):** Payments Canada is NOT the open-banking authority; Canada's CDB framework is overseen by the FCAC and is not yet operational. No FDX / 1033-style consumer-data API is exposed here.
+#### MCP servers (1)
 
-## APIs
+Model Context Protocol servers that expose the API to agents.
 
-### RTR Sandbox - Inbound Participant Payment API
+- [payments-canada](https://apis.io/servers/payments-canada/payments-canada/)
 
-Real-Time Rail sandbox API for sending an RTR payment (ISO 20022 pacs.008 Customer Credit Transfer) to another RTR participant and enquiring on payment status (pacs.028).
+#### Agentic access (1)
 
-- **Human URL:** [https://developer.payments.ca/rtr-sandbox-api/apis](https://developer.payments.ca/rtr-sandbox-api/apis)
-- **Base URL:** `https://api.payments.ca/rtr-sandbox`
-- **Properties:** [OpenAPI](openapi/rtr-inbound-participant-payment-api-openapi.yml)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### RTR Sandbox - Inbound Exchange Heartbeat API
+- [Payments Canada Agentic Access](https://apis.io/agentic-access/payments-canada/payments-canada-agentic-access/)
 
-Heartbeat requests between a participant and the RTR exchange (ISO 20022 admi.004 System Event Notification).
+#### Collections (8)
 
-- **Human URL:** [https://developer.payments.ca/rtr-sandbox-api/apis](https://developer.payments.ca/rtr-sandbox-api/apis)
-- **Base URL:** `https://api.payments.ca/rtr-sandbox`
-- **Properties:** [OpenAPI](openapi/rtr-inbound-csp-heartbeat-api-openapi.yml)
+Postman and Open Collection request collections.
 
-### RTR Sandbox - Interest Report API
+- [CCIN Output API](https://apis.io/collections/payments-canada/open-ccin-extracts-api/)
+- [CCIN Output API](https://apis.io/collections/payments-canada/open-ccin-lookup-api/)
+- [FIF Output API](https://apis.io/collections/payments-canada/open-fif-branch-api/)
+- [FIF Output API](https://apis.io/collections/payments-canada/open-fif-extracts-api/)
+- [Payment Capacity Balance Report](https://apis.io/collections/payments-canada/open-rtr-balance-report-api/)
+- [Inbound Exchange Heartbeat API](https://apis.io/collections/payments-canada/open-rtr-inbound-csp-heartbeat-api/)
+- [Inbound Participant Payment API](https://apis.io/collections/payments-canada/open-rtr-inbound-participant-payment-api/)
+- [Interest Report](https://apis.io/collections/payments-canada/open-rtr-interest-report-api/)
 
-Clearing-and-settlement API generating an interest report (ISO 20022 camt.003 / camt.004).
+#### Overlays (8)
 
-- **Human URL:** [https://developer.payments.ca/rtr-sandbox-api/apis](https://developer.payments.ca/rtr-sandbox-api/apis)
-- **Base URL:** `https://api.payments.ca/rtr-sandbox`
-- **Properties:** [OpenAPI](openapi/rtr-interest-report-api-openapi.yml)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-### RTR Sandbox - Payment Capacity Balance Report API
+- [Ccin Extracts Api Overlay](https://apis.io/overlays/payments-canada/ccin-extracts-api-overlay/)
+- [Ccin Lookup Api Overlay](https://apis.io/overlays/payments-canada/ccin-lookup-api-overlay/)
+- [Fif Branch Api Overlay](https://apis.io/overlays/payments-canada/fif-branch-api-overlay/)
+- [Fif Extracts Api Overlay](https://apis.io/overlays/payments-canada/fif-extracts-api-overlay/)
+- [Rtr Balance Report Api Overlay](https://apis.io/overlays/payments-canada/rtr-balance-report-api-overlay/)
+- [Rtr Inbound Csp Heartbeat Api Overlay](https://apis.io/overlays/payments-canada/rtr-inbound-csp-heartbeat-api-overlay/)
+- [Rtr Inbound Participant Payment Api Overlay](https://apis.io/overlays/payments-canada/rtr-inbound-participant-payment-api-overlay/)
+- [Rtr Interest Report Api Overlay](https://apis.io/overlays/payments-canada/rtr-interest-report-api-overlay/)
 
-Clearing-and-settlement API generating a payment-capacity balance report (ISO 20022 camt.003 / camt.004).
+#### Security (2)
 
-- **Human URL:** [https://developer.payments.ca/rtr-sandbox-api/apis](https://developer.payments.ca/rtr-sandbox-api/apis)
-- **Base URL:** `https://api.payments.ca/rtr-sandbox`
-- **Properties:** [OpenAPI](openapi/rtr-balance-report-api-openapi.yml)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Lynx Sandbox API
+- [Payments Canada Authentication](https://apis.io/security/payments-canada/payments-canada-authentication/)
+- [Payments Canada Domain Security](https://apis.io/security/payments-canada/payments-canada-domain-security/)
 
-Member-gated sandbox APIs for Lynx, Canada's high-value ISO 20022 RTGS system. No public OpenAPI published.
+#### OAuth scopes (1)
 
-- **Human URL:** [https://developer.payments.ca/lynx-sandbox-api/apis](https://developer.payments.ca/lynx-sandbox-api/apis)
+The permissions the API asks for.
 
-### ACSS API
+- [Payments Canada Scopes](https://apis.io/scopes/payments-canada/payments-canada-scopes/)
 
-APIs for the Automated Clearing Settlement System, Canada's retail batch/ACH clearing rail. Member-gated.
+## Where to find this API
 
-- **Human URL:** [https://developer.payments.ca/acss-api/apis](https://developer.payments.ca/acss-api/apis)
-
-### FIF Extracts API / FIF Branch API
-
-Financial Institutions File extract and branch data. Registered-user access.
-
-- **Human URL:** [https://developer.payments.ca/fif-extracts-api/apis](https://developer.payments.ca/fif-extracts-api/apis)
-- **Human URL:** [https://developer.payments.ca/fif-branch-api/apis](https://developer.payments.ca/fif-branch-api/apis)
-
-### CCIN Extracts API / CCIN Lookup API
-
-Corporate Creditor Identification Number extract and single-lookup data. Registered-user access.
-
-- **Human URL:** [https://developer.payments.ca/ccin-extracts-api/apis](https://developer.payments.ca/ccin-extracts-api/apis)
-- **Human URL:** [https://developer.payments.ca/ccin-lookup-api/apis](https://developer.payments.ca/ccin-lookup-api/apis)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.payments.ca/)
-- [Developer Portal](https://developer.payments.ca/)
 - [Documentation](https://developer.payments.ca/apis)
-- [Getting Started](https://developer.payments.ca/getting-started)
-- [GitHub Organization](https://github.com/paymentscanada)
-- [LinkedIn](https://www.linkedin.com/company/payments-canada)
-- [Twitter](https://twitter.com/paymentscanada)
+- [Getting started](https://developer.payments.ca/getting-started)
+- [Support](https://developer.payments.ca/content/contact-us)
+- [Terms of service](https://developer.payments.ca/legal)
+- [Privacy policy](https://developer.payments.ca/legal)
+- [GitHub](https://github.com/paymentscanada)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 44.8 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 68.5 |
+| Access clarity | 21.1 |
+
+**Agent readiness 24.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 38.4** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/payments-canada/](https://apis.io/providers/payments-canada/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Payments Canada: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/payments-canada/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
